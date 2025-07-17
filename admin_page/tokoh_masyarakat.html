@@ -70,11 +70,8 @@
       <p class="copyright">© 2025 Desa Relokasi Pelem. All rights reserved.</p>
 
 </footer>
-</body>
-</html>
 
-
-<script>
+  <script>
   // Scroll animation
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -94,12 +91,12 @@
     .then(data => {
       if (!data.userId) {
         alert("Sesi login Anda telah berakhir. Silakan login kembali.");
-        window.location.href = "../dashboard.html";
+        window.location.href = "../index.html";
       }
     })
     .catch(error => {
       alert("Sesi login Anda telah berakhir. Silakan login kembali.");
-      window.location.href = "../dashboard.html";
+      window.location.href = "../index.html";
     });
 
   // Logout
@@ -199,4 +196,8 @@
     });
   }
 });
-</script>
+</script>      
+</body>
+</html>
+
+
