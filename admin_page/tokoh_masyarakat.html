@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <title>Website Profile Desa Relokasi Pelem</title>
+</head>
+<body>
+   <!-- Navbar -->
+  <header class="navbar">
+    <div class="container">
+      <h1 class="logo">Relokasi Pelem</h1>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="dashboard_admin.html">Beranda</a></li>
+          <li><a href="berita_admin.html">Berita</a></li>
+          <li><a href="sosial_kemanusiaan.html">Sosial & Kemanusiaan</a></li>
+          <li><a href="tokoh_masyarakat.html">Tokoh Masyarakat</a></li>
+          <li><a href="#">Organisasi</a></li>
+          <li><a href="#">Kontak Kami</a></li>
+        </ul>
+      </nav>
+      <div class="auth-buttons">
+        <button class="btn logout" >Logout</button>
+      </div>
+    </div>
+  </header> 
+  
+  
+
+<section class="tokoh-section animate-on-scroll">
+  <h2 style="margin-top: 40px;">Tokoh Masyarakat Desa Relokasi Pelem</h2>
+
+  <div style="text-align: right; margin: 10px 20px;">
+    <button class="btn tambah-tokoh" onclick="window.location.href='add_tokoh_masyarakat.html'">+ Tambah Tokoh</button>
+  </div>
+
+  <div class="tokoh-grid" id="tokohContainer">
+    <!-- Card tokoh akan di-generate di sini via JS -->
+  </div>
+</section>
+
+
+<footer class="footer-section">
+  <div class="footer-container">
+    <div class="footer-contact">
+      <h3>Kontak</h3>
+      <p><strong>Alamat :</strong> Dusun Relokasi Pelem, Kalurahan Girikerto, Kapanewon Turi, Kabupaten Sleman, DIY</p>
+    </div>
+    <div class="footer-social">
+      <h4>Follow us :</h4>
+      <div class="social-icons">
+        <a href="https://instagram.com/ipp_sebaya" target="_blank">
+          <img src="./image/ig.png" alt="Instagram">
+          @ipp_sebaya
+        </a>
+        <a href="https://facebook.com/Ipp Sebaya" target="_blank">
+          <img src="./image/fb.png" alt="Facebook">
+          Ipp Sebaya
+        </a>
+        <a href="https://tiktok.com/@ipp_sebaya" target="_blank">
+          <img src="./image/tt.png" alt="TikTok">
+          ipp_sebaya
+        </a>
+      </div>
+    </div>
+  </div>
+      <p class="copyright">© 2025 Desa Relokasi Pelem. All rights reserved.</p>
+
+</footer>
+</body>
+</html>
+
+
+<script>
+  // Scroll animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+      }
+    });
+  });
+  document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+  // Cek sesi login
+  fetch("https://backend-relokasi-pelem.vercel.app/whoami", { credentials: 'include' })
+    .then(res => {
+      if (!res.ok) throw new Error("Session invalid");
+      return res.json();
+    })
+    .then(data => {
+      if (!data.userId) {
+        alert("Sesi login Anda telah berakhir. Silakan login kembali.");
+        window.location.href = "../dashboard.html";
+      }
+    })
+    .catch(error => {
+      alert("Sesi login Anda telah berakhir. Silakan login kembali.");
+      window.location.href = "../dashboard.html";
+    });
+
+  // Logout
+  document.addEventListener('DOMContentLoaded', () => {
+    const logoutBtn = document.querySelector('.btn.logout');
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', async () => {
+        try {
+          const response = await fetch('https://backend-relokasi-pelem.vercel.app/logout', {
+            method: 'DELETE',
+            credentials: 'include'
+          });
+          const data = await response.json();
+          alert(data.msg);
+          if (response.ok) window.location.href = "../dashboard.html";
+        } catch (error) {
+          alert("Terjadi kesalahan saat logout");
+        }
+      });
+
+      // Load data tokoh
+      loadTokoh();
+    }
+  });
+
+  async function loadTokoh() {
+    const container = document.getElementById("tokohContainer");
+    try {
+      const res = await fetch("https://backend-relokasi-pelem.vercel.app/tokoh", {
+        credentials: "include"
+      });
+      const tokohList = await res.json();
+
+      if (!Array.isArray(tokohList)) {
+        container.innerHTML = "<p>Gagal memuat data tokoh.</p>";
+        return;
+      }
+
+      container.innerHTML = ""; // Bersihkan
+
+      tokohList.forEach(tokoh => {
+        const card = document.createElement("div");
+        card.classList.add("tokoh-card");
+
+        card.innerHTML = `
+          <img src="https://backend-relokasi-pelem.vercel.app/uploads/${tokoh.gambar}" alt="${tokoh.nama_tokoh}">
+          <p><strong>${tokoh.nama_tokoh}</strong><br><span>${tokoh.jabatan}</span></p>
+          <div class="card-buttons">
+            <button class="btn edit-tokoh" onclick="window.location.href='edit_tokoh.html?id=${tokoh.id_tokoh}'">✏️ Edit</button>
+            <button class="btn delete-tokoh" onclick="deleteTokoh(${tokoh.id_tokoh})">🗑️ Hapus</button>
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+
+    } catch (err) {
+      container.innerHTML = "<p>Terjadi kesalahan saat memuat data tokoh.</p>";
+    }
+  }
+
+  function editTokoh(id) {
+    window.location.href = `edit_tokoh.html?id=${id}`;
+  }
+
+  async function deleteTokoh(id) {
+    if (!confirm("Yakin ingin menghapus tokoh ini?")) return;
+    try {
+      const res = await fetch(`https://backend-relokasi-pelem.vercel.app/tokoh/${id}`, {
+        method: "DELETE",
+        credentials: "include"
+      });
+      const data = await res.json();
+      alert(data.msg);
+      if (res.ok) loadTokoh();
+    } catch (err) {
+      alert("Gagal menghapus tokoh.");
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+  const logoutBtn = document.querySelector('.btn.logout');
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', async () => {
+      try {
+        const response = await fetch('https://backend-relokasi-pelem.vercel.app/logout', {
+          method: 'DELETE',
+          credentials: 'include'
+        });
+        const data = await response.json();
+        alert(data.msg);
+        if (response.ok) window.location.href = "../dashboard.html";
+      } catch (error) {
+        console.error("Logout error:", error);
+        alert("Terjadi kesalahan saat logout");
+      }
+    });
+  }
+});
+</script>

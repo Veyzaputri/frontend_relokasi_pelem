@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Edit Tokoh - Relokasi Pelem</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    .form-container {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 30px;
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-container label,
+    .form-container .info-label {
+      display: block;
+      margin: 15px 0 8px;
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    .upload-area {
+      border: 2px dashed #ccc;
+      border-radius: 10px;
+      text-align: center;
+      padding: 20px;
+      cursor: pointer;
+      margin-bottom: 20px;
+      color: #666;
+      transition: background-color 0.3s;
+    }
+
+    .upload-area:hover {
+      background-color: #f0f0f0;
+    }
+
+    #previewImage {
+      max-width: 200px;
+      height: auto;
+      border-radius: 10px;
+      margin: 10px auto;
+      display: block;
+    }
+
+    .submit-btn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    .submit-btn:hover {
+      background-color: #3e8e41;
+    }
+
+    .footer-section {
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="container">
+      <h1 class="logo">Relokasi Pelem</h1>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="dashboard_admin.html">Beranda</a></li>
+          <li><a href="tokoh_masyarakat.html">Tokoh Masyarakat</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Form Edit Tokoh -->
+  <div class="form-container">
+    <form id="formEditTokoh" enctype="multipart/form-data">
+
+      <p class="info-label">Foto Saat Ini</p>
+      <img id="previewImage" src="" alt="Foto Tokoh" />
+
+      <p class="info-label">Ganti Foto (Opsional)</p>
+      <div id="uploadArea" class="upload-area">
+        <i class="fa-solid fa-upload"></i>
+        <p id="uploadText">Klik untuk upload foto baru</p>
+        <input type="file" id="fileInput" name="file" accept="image/*" style="display: none;" />
+      </div>
+
+      <label for="nama_tokoh">Nama Tokoh</label>
+      <input type="text" id="nama_tokoh" name="nama_tokoh" required>
+
+      <label for="jabatan">Jabatan</label>
+      <input type="text" id="jabatan" name="jabatan" required>
+
+      <button type="submit" class="submit-btn">Simpan Perubahan</button>
+    </form>
+  </div>
+
+  <footer class="footer-section">
+  <div class="footer-container">
+    <div class="footer-contact">
+      <h3>Kontak</h3>
+      <p><strong>Alamat :</strong> Dusun Relokasi Pelem, Kalurahan Girikerto, Kapanewon Turi, Kabupaten Sleman, DIY</p>
+    </div>
+    <div class="footer-social">
+      <h4>Follow us :</h4>
+      <div class="social-icons">
+        <a href="https://instagram.com/ipp_sebaya" target="_blank">
+          <img src="./image/ig.png" alt="Instagram">
+          @ipp_sebaya
+        </a>
+        <a href="https://facebook.com/Ipp Sebaya" target="_blank">
+          <img src="./image/fb.png" alt="Facebook">
+          Ipp Sebaya
+        </a>
+        <a href="https://tiktok.com/@ipp_sebaya" target="_blank">
+          <img src="./image/tt.png" alt="TikTok">
+          ipp_sebaya
+        </a>
+      </div>
+    </div>
+  </div>
+      <p class="copyright">© 2025 Desa Relokasi Pelem. All rights reserved.</p>
+
+</footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const id = urlParams.get("id");
+      const form = document.getElementById("formEditTokoh");
+      const namaInput = document.getElementById("nama_tokoh");
+      const jabatanInput = document.getElementById("jabatan");
+      const fileInput = document.getElementById("fileInput");
+      const uploadArea = document.getElementById("uploadArea");
+      const uploadText = document.getElementById("uploadText");
+      const previewImage = document.getElementById("previewImage");
+
+      if (!id) {
+        alert("ID tokoh tidak ditemukan.");
+        return window.location.href = "tokoh_masyarakat.html";
+      }
+
+      // Fetch data tokoh
+      try {
+        const res = await fetch(`https://backend-relokasi-pelem.vercel.app/tokoh/${id}`, {
+          credentials: "include",
+        });
+        const data = await res.json();
+
+        if (!res.ok) throw new Error(data.msg || "Data tidak ditemukan");
+
+        namaInput.value = data.nama_tokoh;
+        jabatanInput.value = data.jabatan;
+        if (data.gambar) {
+          previewImage.src = `https://backend-relokasi-pelem.vercel.app/uploads/${data.gambar}?t=${new Date().getTime()}`;
+
+        }
+      } catch (err) {
+        alert("Gagal memuat data tokoh: " + err.message);
+        return;
+      }
+
+      // Upload klik
+      uploadArea.addEventListener("click", () => {
+        fileInput.click();
+      });
+
+      fileInput.addEventListener("change", () => {
+        const fileName = fileInput.files.length > 0 ? fileInput.files[0].name : "Upload Foto Baru";
+        uploadText.textContent = fileName;
+
+        if (fileInput.files[0]) {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            previewImage.src = e.target.result;
+          };
+          reader.readAsDataURL(fileInput.files[0]);
+        }
+      });
+
+      // Submit
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append("nama_tokoh", namaInput.value);
+        formData.append("jabatan", jabatanInput.value);
+        if (fileInput.files[0]) {
+          formData.append("file", fileInput.files[0]);
+        }
+
+        try {
+          const res = await fetch(`https://backend-relokasi-pelem.vercel.app/tokoh/${id}`, {
+            method: "PUT",
+            body: formData,
+            credentials: "include",
+          });
+
+          const result = await res.json();
+          if (res.ok) {
+            alert("Tokoh berhasil diperbarui!");
+            window.location.href = "tokoh_masyarakat.html";
+          } else {
+            alert("Gagal update: " + result.msg);
+          }
+        } catch (err) {
+          console.error("Gagal update:", err);
+          alert("Terjadi kesalahan saat mengirim data");
+        }
+      });
+    });
+  </script>
+</body>
+</html>

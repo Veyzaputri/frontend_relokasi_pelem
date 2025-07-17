@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Website Profile Desa Relokasi Pelem</title>
+</head>
+<body>
+   <!-- Navbar -->
+  <header class="navbar">
+    <div class="container">
+      <h1 class="logo">Relokasi Pelem</h1>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="berita.html">Berita</a></li>
+          <li><a href="sosial_kemanusiaan.html">Sosial & Kemanusiaan</a></li>
+          <li><a href="#">Organisasi</a></li>
+          <li><a href="sejarah.html">Sejarah</a></li>
+          <li><a href="kontak.html">Kontak Kami</a></li>
+        </ul>
+      </nav>
+      <div class="auth-buttons">
+        <button class="btn login" onclick="window.location.href='login.html'">Login</button>
+      </div>
+    </div>
+  </header> 
+  
+
+<section class="berita-section">
+    <h2>Berita Relokasi Pelem</h2>
+
+
+    <div class="berita-grid" id="beritaGrid">
+      <!-- Berita akan dimuat di sini -->
+    </div>
+  </section>
+
+<footer class="footer-section">
+  <div class="footer-container">
+    <div class="footer-contact">
+      <h3>Kontak</h3>
+      <p><strong>Alamat :</strong> Dusun Relokasi Pelem, Kalurahan Girikerto, Kapanewon Turi, Kabupaten Sleman, DIY</p>
+    </div>
+    <div class="footer-social">
+      <h4>Follow us :</h4>
+      <div class="social-icons">
+        <a href="https://instagram.com/ipp_sebaya" target="_blank">
+          <img src="./image/ig.png" alt="Instagram">
+          @ipp_sebaya
+        </a>
+        <a href="https://facebook.com/ipp_sebaya" target="_blank">
+          <img src="./image/fb.png" alt="Facebook">
+          ipp_sebaya
+        </a>
+        <a href="https://tiktok.com/@ipp_sebaya" target="_blank">
+          <img src="./image/tt.png" alt="TikTok">
+          ipp_sebaya
+        </a>
+      </div>
+    </div>
+  </div>
+      <p class="copyright">© 2025 Desa Relokasi Pelem. All rights reserved.</p>
+
+</footer>
+</body>
+</html>
+
+
+<script>
+  // Scroll animation trigger
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+      }
+    });
+  });
+
+  const hiddenElements = document.querySelectorAll('.animate-on-scroll');
+  hiddenElements.forEach(el => observer.observe(el));
+
+
+  
+  document.addEventListener("DOMContentLoaded", async () => {
+    const beritaGrid = document.querySelector(".berita-grid");
+
+    try {
+      const res = await fetch("https://backend-relokasi-pelem.vercel.app/berita");
+      const beritaList = await res.json();
+
+      // Kosongkan isi awal
+      beritaGrid.innerHTML = "";
+
+      beritaList.forEach((berita) => {
+        const card = document.createElement("div");
+        card.className = "berita-card";
+
+        const imagePath = berita.gambar
+          ? `https://backend-relokasi-pelem.vercel.app/uploads/${berita.gambar}`
+          : "./image/default.jpg"; // fallback jika tidak ada gambar
+
+        card.innerHTML = `
+          <img src="${imagePath}" alt="Gambar Berita">
+          <p>${berita.isi_berita}</p>
+        `;
+
+        beritaGrid.appendChild(card);
+      });
+    } catch (err) {
+      console.error("Gagal memuat berita:", err);
+    }
+  });
+</script>
+</body>
+</html>

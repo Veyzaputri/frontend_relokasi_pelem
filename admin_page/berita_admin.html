@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css" />
+  <title>Berita Admin - Relokasi Pelem</title>
+</head>
+<body>
+ <header class="navbar">
+    <div class="container">
+      <h1 class="logo">Relokasi Pelem</h1>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="dashboard_admin.html">Beranda</a></li>
+          <li><a href="berita_admin.html">Berita</a></li>
+          <li><a href="sosial_kemanusiaan.html">Sosial & Kemanusiaan</a></li>
+          <li><a href="tokoh_masyarakat.html">Tokoh Masyarakat</a></li>
+          <li><a href="#">Organisasi</a></li>
+          <li><a href="#">Kontak Kami</a></li>
+        </ul>
+      </nav>
+      <div class="auth-buttons">
+        <button class="btn logout" >Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="berita-section">
+    <h2>Berita Relokasi Pelem</h2>
+    <button class="btn tambah-berita" onclick="window.location.href='add_berita.html'">➕ Add Berita</button>
+
+    <div class="berita-grid" id="beritaGrid">
+      <!-- Berita akan dimuat di sini -->
+    </div>
+  </section>
+
+<footer class="footer-section">
+  <div class="footer-container">
+    <div class="footer-contact">
+      <h3>Kontak</h3>
+      <p><strong>Alamat :</strong> Dusun Relokasi Pelem, Kalurahan Girikerto, Kapanewon Turi, Kabupaten Sleman, DIY</p>
+    </div>
+    <div class="footer-social">
+      <h4>Follow us :</h4>
+      <div class="social-icons">
+        <a href="https://instagram.com/ipp_sebaya" target="_blank">
+          <img src="./image/ig.png" alt="Instagram">
+          @ipp_sebaya
+        </a>
+        <a href="https://facebook.com/Ipp Sebaya" target="_blank">
+          <img src="./image/fb.png" alt="Facebook">
+          Ipp Sebaya
+        </a>
+        <a href="https://tiktok.com/@ipp_sebaya" target="_blank">
+          <img src="./image/tt.png" alt="TikTok">
+          ipp_sebaya
+        </a>
+      </div>
+    </div>
+  </div>
+      <p class="copyright">© 2025 Desa Relokasi Pelem. All rights reserved.</p>
+
+</footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      const beritaGrid = document.getElementById("beritaGrid");
+
+      try {
+        const res = await fetch("https://backend-relokasi-pelem.vercel.app/berita", {
+          credentials: "include"
+        });
+
+        const beritaList = await res.json();
+        beritaGrid.innerHTML = ""; // Kosongkan grid
+
+        beritaList.forEach((berita) => {
+          const card = document.createElement("div");
+          card.className = "berita-card";
+
+          const imagePath = berita.gambar
+            ? `https://backend-relokasi-pelem.vercel.app/uploads/${berita.gambar}`
+            : "./image/default.jpg";
+
+          card.innerHTML = `
+            <img src="hhttps://backend-relokasi-pelem.vercel.app/uploads/${berita.gambar}" alt="Gambar Berita">
+            <p>${berita.isi_berita}</p>
+            <div class="berita-actions">
+              <button class="btn edit-berita" onclick="window.location.href='edit_berita.html?id=${berita.id_berita}'">✏️ Edit</button>
+              <button class="btn delete-berita" onclick="deleteBerita(${berita.id_berita})">🗑️ Delete</button>
+            </div>
+          `;
+
+          beritaGrid.appendChild(card);
+        });
+
+      } catch (err) {
+        console.error("Gagal memuat berita:", err);
+      }
+    });
+
+    async function deleteBerita(id) {
+      if (confirm("Apakah kamu yakin ingin menghapus berita ini?")) {
+        try {
+          const res = await fetch(`https://backend-relokasi-pelem.vercel.app/berita/${id}`, {
+            method: "DELETE",
+            credentials: "include",
+          });
+
+          const data = await res.json();
+
+          if (res.ok) {
+            alert("Berita berhasil dihapus.");
+            location.reload();
+          } else {
+            alert("Gagal menghapus: " + data.msg);
+          }
+        } catch (err) {
+          console.error("Gagal menghapus:", err);
+          alert("Terjadi kesalahan saat menghapus");
+        }
+      }
+    }
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+  const logoutBtn = document.querySelector('.btn.logout');
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', async () => {
+      try {
+        const response = await fetch('https://backend-relokasi-pelem.vercel.app/logout', {
+          method: 'DELETE',
+          credentials: 'include'
+        });
+        const data = await response.json();
+        alert(data.msg);
+        if (response.ok) window.location.href = "../dashboard.html";
+      } catch (error) {
+        console.error("Logout error:", error);
+        alert("Terjadi kesalahan saat logout");
+      }
+    });
+  }
+});
+  </script>
+</body>
+</html>

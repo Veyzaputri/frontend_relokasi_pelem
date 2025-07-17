@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Website Profile Desa Relokasi Pelem</title>
+</head>
+<body>
+   <!-- Navbar -->
+  <header class="navbar">
+    <div class="container">
+      <h1 class="logo">Relokasi Pelem</h1>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="berita.html">Berita</a></li>
+          <li><a href="sosial_kemanusiaan.html">Sosial & Kemanusiaan</a></li>
+          <li><a href="#">Organisasi</a></li>
+          <li><a href="sejarah.html">Sejarah</a></li>
+          <li><a href="kontak.html">Kontak Kami</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header> 
+
+  <div class="login-container">
+    <h2>Login</h2>
+    <form action="#" method="post" id="login-form">
+      <div class="input-group">
+        <i class="fa-solid fa-user" style="color: #969aa2;font-size: 23px;"></i>
+        <input type="text" placeholder="Username" id="username" required>
+      </div>
+      <div class="input-group">
+        <i class="fa-solid fa-lock" style="color: #969aa2; font-size: 23px;" ></i>
+        <input type="password" placeholder="Password" id="password" required>
+      </div>
+      <button type="submit" class="login-btn">Login</button>
+    </form>
+  </div>
+  
+
+
+
+<footer class="footer-section">
+  <div class="footer-container">
+    <div class="footer-contact">
+      <h3>Kontak</h3>
+      <p><strong>Alamat :</strong> Dusun Relokasi Pelem, Kalurahan Girikerto, Kapanewon Turi, Kabupaten Sleman, DIY</p>
+    </div>
+    <div class="footer-social">
+      <h4>Follow us :</h4>
+      <div class="social-icons">
+        <a href="https://instagram.com/ipp_sebaya" target="_blank">
+          <img src="./image/ig.png" alt="Instagram">
+          @ipp_sebaya
+        </a>
+        <a href="https://facebook.com/ipp_sebaya" target="_blank">
+          <img src="./image/fb.png" alt="Facebook">
+          ipp_sebaya
+        </a>
+        <a href="https://tiktok.com/@ipp_sebaya" target="_blank">
+          <img src="./image/tt.png" alt="TikTok">
+          ipp_sebaya
+        </a>
+      </div>
+    </div>
+  </div>
+      <p class="copyright">© 2025 Desa Relokasi Pelem. All rights reserved.</p>
+
+</footer>
+</body>
+</html>
+
+
+<script>
+  // Scroll animation trigger
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+      }
+    });
+  });
+
+  const hiddenElements = document.querySelectorAll('.animate-on-scroll');
+  hiddenElements.forEach(el => observer.observe(el));
+
+  const form = document.querySelector('form');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const username = form.querySelector('#username').value.trim();
+const password = form.querySelector('#password').value.trim();
+
+  try {
+    const res = await fetch('https://backend-relokasi-pelem.vercel.app/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include', // agar cookie session ikut terkirim
+      body: JSON.stringify({ username, password })
+    });
+
+    const data = await res.json();
+    if (res.ok) {
+  alert("Login berhasil!");
+  window.location.href = "admin_page/dashboard_admin.html";
+} else {
+  alert("Login gagal: " + data.msg);
+}
+  } catch (err) {
+    console.error('Login error:', err);
+  }
+});
+
+</script>
+</body>
+</html>

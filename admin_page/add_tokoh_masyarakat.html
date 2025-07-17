@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tambah Tokoh - Relokasi Pelem</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../style.css">
+<style>
+   input[type="text"], textarea {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 100%;
+} 
+</style>
+</head>
+<body>
+<header class="navbar">
+  <div class="container">
+    <h1 class="logo">Relokasi Pelem</h1>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="dashboard_admin.html">Beranda</a></li>
+          <li><a href="berita_admin.html">Berita</a></li>
+          <li><a href="sosial_kemanusiaan.html">Sosial & Kemanusiaan</a></li>
+          <li><a href="tokoh_masyarakat.html">Tokoh Masyarakat</a></li>
+          <li><a href="#">Organisasi</a></li>
+          <li><a href="#">Kontak Kami</a></li>
+      </ul>
+    </nav>
+    <div class="auth-buttons">
+      <button class="btn login">Logout</button>
+    </div>
+  </div>
+</header> 
+
+<!-- Form Tambah Tokoh -->
+<div class="form-container">
+  <form id="formTokoh" action="#" method="post" enctype="multipart/form-data">
+    
+    <!-- Upload Gambar -->
+    <div id="uploadArea" class="upload-area">
+      <i class="fa-solid fa-upload"></i>
+      <p id="uploadText">Upload Foto Tokoh</p>
+      <input type="file" id="fileInput" name="file" accept="image/*" style="display: none;" />
+    </div>
+
+    <!-- Nama Tokoh -->
+    <label for="nama_tokoh"><strong>Nama Tokoh</strong></label>
+    <input type="text" id="nama_tokoh" name="nama_tokoh" placeholder="Masukkan nama tokoh" required>
+
+    <!-- Jabatan -->
+    <label for="jabatan"><strong>Jabatan</strong></label>
+    <input type="text" id="jabatan" name="jabatan" placeholder="Masukkan jabatan tokoh" required>
+
+    <button type="submit" class="submit-btn">Simpan</button>
+  </form>
+</div>
+
+<!-- Footer -->
+<footer class="footer-section">
+  <div class="footer-container">
+    <div class="footer-contact">
+      <h3>Kontak</h3>
+      <p><strong>Alamat :</strong> Dusun Relokasi Pelem, Kalurahan Girikerto, Kapanewon Turi, Kabupaten Sleman, DIY</p>
+    </div>
+    <div class="footer-social">
+      <h4>Follow us :</h4>
+      <div class="social-icons">
+        <a href="https://instagram.com/ipp_sebaya" target="_blank">
+          <img src="./image/ig.png" alt="Instagram">
+          @ipp_sebaya
+        </a>
+        <a href="https://facebook.com/Ipp Sebaya" target="_blank">
+          <img src="./image/fb.png" alt="Facebook">
+          Ipp Sebaya
+        </a>
+        <a href="https://tiktok.com/@ipp_sebaya" target="_blank">
+          <img src="./image/tt.png" alt="TikTok">
+          ipp_sebaya
+        </a>
+      </div>
+    </div>
+  </div>
+      <p class="copyright">© 2025 Desa Relokasi Pelem. All rights reserved.</p>
+
+</footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const uploadArea = document.getElementById("uploadArea");
+    const fileInput = document.getElementById("fileInput");
+    const uploadText = document.getElementById("uploadText");
+
+    // Klik area upload = buka file picker
+    uploadArea.addEventListener("click", () => {
+      fileInput.click();
+    });
+
+    // Ganti teks jadi nama file setelah dipilih
+    fileInput.addEventListener("change", () => {
+      const fileName = fileInput.files.length > 0 ? fileInput.files[0].name : "Upload Foto Tokoh";
+      uploadText.textContent = fileName;
+    });
+
+    // Submit form ke backend
+    document.getElementById("formTokoh").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      
+      try {
+        const res = await fetch("https://backend-relokasi-pelem.vercel.app/add-tokoh", {
+          method: "POST",
+          body: formData,
+          credentials: "include"
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+          alert("Tokoh berhasil ditambahkan!");
+          window.location.href = "tokoh_masyarakat.html";
+        } else {
+          alert("Gagal menambahkan tokoh: " + data.msg);
+        }
+      } catch (err) {
+        console.error("Error:", err);
+        alert("Terjadi kesalahan saat mengirim data.");
+      }
+    });
+  });
+</script>
+</body>
+</html>
