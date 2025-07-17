@@ -113,9 +113,7 @@
         const card = document.createElement("div");
         card.className = "tokoh-card";
 
-        const imagePath = tokoh.gambar
-          ? `https://backend-relokasi-pelem.vercel.app/uploads/${tokoh.gambar}`
-          : "./image/default.jpg";
+        const imagePath = tokoh.gambar ? tokoh.gambar : "./image/default.jpg";
 
         card.innerHTML = `
           <img src="${imagePath}" alt="${tokoh.nama_tokoh}">
