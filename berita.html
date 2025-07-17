@@ -98,9 +98,7 @@
         const card = document.createElement("div");
         card.className = "berita-card";
 
-        const imagePath = berita.gambar
-          ? `https://backend-relokasi-pelem.vercel.app/uploads/${berita.gambar}`
-          : "./image/default.jpg"; // fallback jika tidak ada gambar
+        const imagePath = berita.gambar ? berita.gambar : "./image/default.jpg";
 
         card.innerHTML = `
           <img src="${imagePath}" alt="Gambar Berita">
