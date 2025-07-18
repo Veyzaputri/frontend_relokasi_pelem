@@ -152,7 +152,7 @@
         card.classList.add("tokoh-card");
 
         card.innerHTML = `
-          <img src="https://backend-relokasi-pelem.vercel.app/uploads/${tokoh.gambar}" alt="${tokoh.nama_tokoh}">
+          <img src="${tokoh.gambar}" alt="${tokoh.nama_tokoh}">
           <p><strong>${tokoh.nama_tokoh}</strong><br><span>${tokoh.jabatan}</span></p>
           <div class="card-buttons">
             <button class="btn edit-tokoh" onclick="editTokoh(${tokoh.id_tokoh})">✏️ Edit</button>
