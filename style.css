@@ -667,6 +667,125 @@ body {
   padding: 20px;
 }
 
+.organisasi-header {
+    background: linear-gradient(rgba(63, 93, 69, 0.8), rgba(63, 93, 69, 0.8)), url('https://via.placeholder.com/1500x400.png?text=Foto+Bersama+Anggota') no-repeat center center/cover;
+    color: #fff;
+    padding: 80px 0;
+    text-align: center;
+    margin-top: 70px; /* Sesuaikan dengan tinggi navbar */
+}
+
+.organisasi-header h1 {
+    font-size: 42px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.organisasi-container {
+    padding: 40px 20px;
+}
+
+.organisasi-content {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.org-section {
+    margin-bottom: 40px;
+}
+
+.org-section h2 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #3f5d45;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+}
+
+.org-section h2 .fas {
+    margin-right: 15px;
+    font-size: 24px;
+}
+
+.org-section h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.org-section p, .org-section li {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #555;
+}
+
+.org-section ol, .org-section ul {
+    padding-left: 25px;
+}
+
+.struktur-list {
+    list-style: none;
+    padding-left: 0;
+}
+.struktur-list li {
+    margin-bottom: 8px;
+}
+
+.program-list li {
+    margin-bottom: 10px;
+}
+
+.galeri-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.galeri-grid img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.galeri-grid img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+.cta-gabung {
+    background-color: #f8f9fa;
+    text-align: center;
+    padding: 30px;
+    border-radius: 10px;
+    border: 1px solid #e9ecef;
+}
+
+.btn-sosial {
+    display: inline-block;
+    background-color: #3f5d45;
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-sosial:hover {
+    background-color: #314737;
+}
+
 /* Animations */
 @keyframes fadeInUp {
   0% {
