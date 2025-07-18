@@ -176,7 +176,7 @@
         namaInput.value = data.nama_tokoh;
         jabatanInput.value = data.jabatan;
         if (data.gambar) {
-          previewImage.src = `https://backend-relokasi-pelem.vercel.app/uploads/${data.gambar}?t=${new Date().getTime()}`;
+          previewImage.src = data.gambar;
 
         }
       } catch (err) {
