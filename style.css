@@ -402,6 +402,63 @@ textarea, .form-container input[type="text"] {
   color: #cccccc;
 }
 
+.kontak-container {
+  max-width: 1100px;
+  margin: 120px auto 40px;
+  padding: 50px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.kontak-kiri {
+  flex: 1.2; /* Memberi lebih banyak ruang untuk teks */
+}
+
+.kontak-kiri h2 {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #222;
+}
+
+.kontak-kiri p {
+  display: flex;
+  align-items: flex-start;
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #333;
+  line-height: 1.6;
+}
+
+.kontak-kiri .fas {
+  font-size: 24px;
+  color: #3f5d45; /* Warna hijau tema */
+  margin-right: 20px;
+  width: 30px;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.kontak-kanan {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.kontak-kanan iframe {
+  width: 100%;
+  height: 350px;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+
 /* === Animations === */
 @keyframes fadeInUp {
   from {
@@ -433,4 +490,16 @@ textarea, .form-container input[type="text"] {
 .animate-on-scroll.show {
   opacity: 1;
   transform: translateY(0) scale(1);
+}
+
+@media (max-width: 800px) {
+  .kontak-container {
+    flex-direction: column;
+    padding: 30px;
+    margin-top: 100px;
+  }
+  .kontak-kiri h2 {
+    text-align: center;
+    font-size: 28px;
+  }
 }
