@@ -254,6 +254,10 @@ body {
 }
 .card-buttons .btn, .berita-actions .btn {
   flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
 
 /* Login Page */
