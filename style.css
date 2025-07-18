@@ -64,15 +64,15 @@ body {
   transition: all 0.3s ease;
 }
 .login {
-  background-color: white;
-  color: #3f5d45;
+  background-color: #ffffff;
+  color: #4d6e4c;
 }
 .signup {
   background-color: #0044cc;
   color: white;
 }
 .login:hover {
-  background-color: #f0f0f0;
+  background-color: #f3f3f3;
 }
 .signup:hover {
   background-color: #0033a0;
@@ -415,7 +415,7 @@ body {
 }
 
 .login-btn:hover {
-  background-color: #0033cc;
+  background-color: #f3f3f3;
 }
 
 .btn {
