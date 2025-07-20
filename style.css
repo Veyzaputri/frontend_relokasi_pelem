@@ -669,16 +669,16 @@ body {
 
 .header-with-logo {
     display: flex;
+    flex-direction: row; /* Memaksa elemen untuk berbaris horizontal (sebelahan) */
     align-items: center;
     justify-content: center;
-    gap: 25px; /* Jarak antara logo dan judul */
-    flex-wrap: wrap; /* Agar responsif di layar kecil */
+    gap: 25px; /* Jarak antara logo dan tulisan */
 }
 
 .org-logo {
-    height: 200px; /* Atur tinggi logo */
-    width: 200px;  /* Atur lebar logo */
-    object-fit: cover;
+    height: 150px; /* Ukuran logo diperbesar agar lebih jelas */
+    width: auto;   /* Lebar diatur otomatis agar proporsi gambar benar dan tidak gepeng */
+    /* Hapus properti border-radius dan object-fit agar logo tidak terpotong */
 }
 .organisasi-header {
     background: linear-gradient(rgba(63, 93, 69, 0.8), rgba(63, 93, 69, 0.8)), url('https://via.placeholder.com/1500x400.png?text=Foto+Bersama+Anggota') no-repeat center center/cover;
