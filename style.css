@@ -676,8 +676,8 @@ body {
 }
 
 .org-logo {
-    height: 500px; /* Atur tinggi logo */
-    width: 500px;  /* Atur lebar logo */
+    height: 1000px; /* Atur tinggi logo */
+    width: 1000px;  /* Atur lebar logo */
     object-fit: cover;
 }
 .organisasi-header {
@@ -686,13 +686,13 @@ body {
     padding: 80px 0;
     text-align: center;
     margin-top: 70px; /* Sesuaikan dengan tinggi navbar */
-    margin-bottom: 0;
+    
 }
 
 .organisasi-header h1 {
     font-size: 42px;
     font-weight: 600;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
 }
 
 .organisasi-container {
