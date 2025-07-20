@@ -676,9 +676,9 @@ body {
 }
 
 .org-logo {
-    height: 70px; /* Atur tinggi logo */
-    width: 70px;  /* Atur lebar logo */
-    border-radius: 50%; /* Membuat logo menjadi bulat */
+    height: 120px; /* Atur tinggi logo */
+    width: 120px;  /* Atur lebar logo */
+    border-radius: 20%; /* Membuat logo menjadi bulat */
     objec
 }
 .organisasi-header {
