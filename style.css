@@ -676,8 +676,8 @@ body {
 }
 
 .org-logo {
-    height: 1000px; /* Atur tinggi logo */
-    width: 1000px;  /* Atur lebar logo */
+    height: 700px; /* Atur tinggi logo */
+    width: 700px;  /* Atur lebar logo */
     object-fit: cover;
 }
 .organisasi-header {
