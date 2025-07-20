@@ -676,10 +676,9 @@ body {
 }
 
 .org-logo {
-    height: 120px; /* Atur tinggi logo */
-    width: 120px;  /* Atur lebar logo */
-    border-radius: 20%; /* Membuat logo menjadi bulat */
-    objec
+    height: 500px; /* Atur tinggi logo */
+    width: 500px;  /* Atur lebar logo */
+    object-fit: cover;
 }
 .organisasi-header {
     background: linear-gradient(rgba(63, 93, 69, 0.8), rgba(63, 93, 69, 0.8)), url('https://via.placeholder.com/1500x400.png?text=Foto+Bersama+Anggota') no-repeat center center/cover;
