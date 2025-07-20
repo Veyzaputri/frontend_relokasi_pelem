@@ -627,11 +627,11 @@ body {
       margin: 8px 0;
     }
     .info-photo {
-      flex: 1 1 300px;
+      flex: 1 1 400px;
     }
     .info-photo img {
       width: 100%;
-      max-width: 300px; /* Atur ukuran maksimal gambar */
+      max-width: 450px; /* Atur ukuran maksimal gambar */
       height: auto;      /* Biar proporsional */
       border-radius: 10px;
       display: block;
