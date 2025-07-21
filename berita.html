@@ -1,116 +1,130 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <title>Website Profile Desa Relokasi Pelem</title>
+    <title>Berita - Desa Relokasi Pelem</title>
 </head>
 <body>
-   <!-- Navbar -->
-  <header class="navbar">
-    <div class="container">
-      <h1 class="logo">Relokasi Pelem</h1>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="index.html">Beranda</a></li>
-          <li><a href="berita.html">Berita</a></li>
-          <li><a href="sosial_kemanusiaan.html">Sosial & Kemanusiaan</a></li>
-          <li><a href="organisasi.html">Organisasi</a></li>
-          <li><a href="sejarah.html">Sejarah</a></li>
-          <li><a href="kontak.html">Kontak Kami</a></li>
-        </ul>
-      </nav>
-      <div class="auth-buttons">
-        <button class="btn login" onclick="window.location.href='login.html'">Login</button>
-      </div>
-    </div>
-  </header> 
-  
+    <header class="navbar">
+        <div class="container">
+            <h1 class="logo">Relokasi Pelem</h1>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="berita.html">Berita</a></li>
+                    <li><a href="sosial_kemanusiaan.html">Sosial & Kemanusiaan</a></li>
+                    <li><a href="organisasi.html">Organisasi</a></li>
+                    <li><a href="sejarah.html">Sejarah</a></li>
+                    <li><a href="kontak.html">Kontak Kami</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <button class="btn login" onclick="window.location.href='login.html'">Login</button>
+            </div>
+        </div>
+    </header>
 
-<section class="berita-section">
-    <h2>Berita Relokasi Pelem</h2>
+    <main>
+        <section class="hero-berita">
+            <h1>Berita & Informasi Desa</h1>
+            <p>Ikuti kabar terbaru seputar kegiatan dan perkembangan di Desa Relokasi Pelem.</p>
+        </section>
 
+        <section class="berita-section-content">
+            <div class="berita-container" id="beritaContainer">
+                </div>
 
-    <div class="berita-grid" id="beritaGrid">
-      <!-- Berita akan dimuat di sini -->
-    </div>
-  </section>
+            <div class="pagination">
+                <a href="#" class="active">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">&raquo;</a>
+            </div>
+        </section>
+    </main>
 
-<footer class="footer-section">
-  <div class="footer-container">
-    <div class="footer-contact">
-      <h3>Kontak</h3>
-      <p><strong>Alamat :</strong> Dusun Relokasi Pelem, Kalurahan Girikerto, Kapanewon Turi, Kabupaten Sleman, DIY</p>
-    </div>
-    <div class="footer-social">
-      <h4>Follow us :</h4>
-      <div class="social-icons">
-        <a href="https://instagram.com/ipp_sebaya" target="_blank">
-          <img src="./image/ig.png" alt="Instagram">
-          @ipp_sebaya
-        </a>
-        <a href="https://facebook.com/ipp_sebaya" target="_blank">
-          <img src="./image/fb.png" alt="Facebook">
-          ipp_sebaya
-        </a>
-        <a href="https://tiktok.com/@ipp_sebaya" target="_blank">
-          <img src="./image/tt.png" alt="TikTok">
-          ipp_sebaya
-        </a>
-      </div>
-    </div>
-  </div>
-      <p class="copyright">© 2025 Desa Relokasi Pelem. All rights reserved.</p>
+    <footer class="footer-section">
+        <div class="footer-container">
+            <div class="footer-contact">
+                <h3>Kontak</h3>
+                <p><strong>Alamat :</strong> Dusun Relokasi Pelem, Kalurahan Girikerto, Kapanewon Turi, Kabupaten Sleman, DIY</p>
+            </div>
+            <div class="footer-social">
+                <h4>Follow us :</h4>
+                <div class="social-icons">
+                    <a href="https://instagram.com/ipp_sebaya" target="_blank">
+                        <img src="./image/ig.png" alt="Instagram"> @ipp_sebaya
+                    </a>
+                    <a href="https://facebook.com/ipp_sebaya" target="_blank">
+                        <img src="./image/fb.png" alt="Facebook"> ipp_sebaya
+                    </a>
+                    <a href="https://tiktok.com/@ipp_sebaya" target="_blank">
+                        <img src="./image/tt.png" alt="TikTok"> ipp_sebaya
+                    </a>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">© 2025 Desa Relokasi Pelem. All rights reserved.</p>
+    </footer>
 
-</footer>
-</body>
-</html>
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            // Target container baru untuk berita
+            const beritaContainer = document.getElementById("beritaContainer");
 
+            // Tampilkan pesan loading
+            if (beritaContainer) {
+                beritaContainer.innerHTML = "<p style='text-align:center;'>Memuat berita...</p>";
+            }
 
-<script>
-  // Scroll animation trigger
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('show');
-      }
-    });
-  });
+            try {
+                const res = await fetch("https://backend-relokasi-pelem.vercel.app/berita");
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+                const beritaList = await res.json();
 
-  const hiddenElements = document.querySelectorAll('.animate-on-scroll');
-  hiddenElements.forEach(el => observer.observe(el));
+                // Kosongkan pesan loading
+                beritaContainer.innerHTML = "";
 
+                if (beritaList.length === 0) {
+                    beritaContainer.innerHTML = "<p style='text-align:center;'>Belum ada berita untuk ditampilkan.</p>";
+                    return;
+                }
 
-  
-  document.addEventListener("DOMContentLoaded", async () => {
-    const beritaGrid = document.querySelector(".berita-grid");
+                beritaList.forEach((berita) => {
+                    const card = document.createElement("div");
+                    card.className = "berita-card";
 
-    try {
-      const res = await fetch("https://backend-relokasi-pelem.vercel.app/berita");
-      const beritaList = await res.json();
+                    // Menangani jika path gambar tidak lengkap
+                    const imagePath = berita.gambar ? `https://backend-relokasi-pelem.vercel.app/${berita.gambar}` : "./image/default_news.jpg";
+                    const isiBerita = berita.isi_berita || "Konten tidak tersedia.";
+                    // Potong teks jika terlalu panjang
+                    const snippet = isiBerita.length > 120 ? isiBerita.substring(0, 120) + "..." : isiBerita;
 
-      // Kosongkan isi awal
-      beritaGrid.innerHTML = "";
+                    card.innerHTML = `
+                        <img src="${imagePath}" alt="Gambar Berita" class="berita-card-img">
+                        <div class="berita-card-body">
+                            <span class="berita-card-kategori">Info Desa</span>
+                            <h3 class="berita-card-title">${berita.judul || 'Judul Berita'}</h3>
+                            <p class="berita-card-snippet">${snippet}</p>
+                            <a href="#" class="btn-berita">Baca Selengkapnya</a>
+                        </div>
+                    `;
 
-      beritaList.forEach((berita) => {
-        const card = document.createElement("div");
-        card.className = "berita-card";
-
-        const imagePath = berita.gambar ? berita.gambar : "./image/default.jpg";
-
-        card.innerHTML = `
-          <img src="${imagePath}" alt="Gambar Berita">
-          <p>${berita.isi_berita}</p>
-        `;
-
-        beritaGrid.appendChild(card);
-      });
-    } catch (err) {
-      console.error("Gagal memuat berita:", err);
-    }
-  });
-</script>
+                    beritaContainer.appendChild(card);
+                });
+            } catch (err) {
+                console.error("Gagal memuat berita:", err);
+                if (beritaContainer) {
+                    beritaContainer.innerHTML = "<p style='text-align:center; color: red;'>Gagal memuat berita. Silakan coba lagi nanti.</p>";
+                }
+            }
+        });
+    </script>
 </body>
 </html>
