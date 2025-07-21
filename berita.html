@@ -100,24 +100,19 @@
 
                     const defaultImage = "./image/default_news.jpg";
                     
-                    // Logika Path Gambar Disesuaikan Sesuai Permintaan Anda
+                    // Menggunakan URL gambar yang sudah benar
                     const imagePath = berita.gambar ? berita.gambar : "./image/default.jpg";
-                    
-                    const snippet = (berita.isi_berita || "Konten tidak tersedia.").substring(0, 120) + "...";
 
-                    // Template Kartu Disesuaikan dengan CSS yang Sudah Dibuat
+                    // PERUBAHAN DI SINI: Template kartu hanya berisi gambar dan isi berita
                     card.innerHTML = `
                         <img 
                             src="${imagePath}" 
-                            alt="${berita.judul || 'Gambar Berita'}" 
+                            alt="Gambar Berita" 
                             class="berita-card-img"
                             onerror="this.onerror=null; this.src='${defaultImage}';"
                         >
                         <div class="berita-card-body">
-                            <span class="berita-card-kategori">Info Desa</span>
-                            <h3 class="berita-card-title">${berita.judul || 'Judul Berita'}</h3>
-                            <p class="berita-card-snippet">${snippet}</p>
-                            <a href="#" class="btn-berita">Baca Selengkapnya</a>
+                            <p class="berita-card-snippet">${berita.isi_berita || 'Konten tidak tersedia.'}</p>
                         </div>
                     `;
 
