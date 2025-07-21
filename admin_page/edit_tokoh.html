@@ -203,67 +203,55 @@
       });
 
       // Submit
-     form.addEventListener("submit", async (e) => {
-        e.preventDefault();
+    form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-        // Cek apakah ada file baru yang dipilih
-        const fileToUpload = fileInput.files[0];
+    const fileToUpload = fileInput.files[0];
+    const url = `https://backend-relokasi-pelem.vercel.app/tokoh/${id}`;
+    let fetchOptions;
 
-        // Tentukan URL dan Opsi untuk fetch
-        const url = `https://backend-relokasi-pelem.vercel.app/tokoh/${id}`;
-        let fetchOptions;
+    if (fileToUpload) {
+        // Kirim sebagai FormData jika ada file
+        const formData = new FormData();
+        formData.append("nama_tokoh", namaInput.value);
+        formData.append("jabatan", jabatanInput.value);
+        formData.append("file", fileToUpload);
 
-        if (fileToUpload) {
-            // JIKA ADA FILE: Kirim sebagai FormData (multipart)
-            const formData = new FormData();
-            formData.append("nama_tokoh", namaInput.value);
-            formData.append("jabatan", jabatanInput.value);
-            formData.append("file", fileToUpload);
+        fetchOptions = {
+            method: "PUT",
+            body: formData,
+            credentials: "include",
+        };
+    } else {
+        // Kirim sebagai JSON jika tidak ada file
+        const body = {
+            nama_tokoh: namaInput.value,
+            jabatan: jabatanInput.value,
+        };
 
-            fetchOptions = {
-                method: "PUT",
-                body: formData, // Biarkan browser mengatur Content-Type secara otomatis
-                credentials: "include",
-            };
+        fetchOptions = {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body),
+            credentials: "include",
+        };
+    }
 
-        } else {
-            // JIKA TIDAK ADA FILE: Kirim sebagai JSON
-            const body = {
-                nama_tokoh: namaInput.value,
-                jabatan: jabatanInput.value,
-            };
+    try {
+        const res = await fetch(url, fetchOptions);
+        const result = await res.json(); // Selalu coba baca JSON untuk info error
 
-            fetchOptions = {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json", // Set Content-Type ke JSON
-                },
-                body: JSON.stringify(body),
-                credentials: "include",
-            };
+        if (!res.ok) {
+            throw new Error(result.msg || `HTTP error! status: ${res.status}`);
         }
-
-        // Kirim permintaan ke server
-        try {
-            const res = await fetch(url, fetchOptions);
-
-            // Cek jika response tidak OK, coba baca sebagai JSON untuk pesan error
-            if (!res.ok) {
-                const errorResult = await res.json();
-                // Tampilkan pesan error dari server jika ada
-                throw new Error(errorResult.msg || `HTTP error! status: ${res.status}`);
-            }
-
-            const result = await res.json();
-            alert("Tokoh berhasil diperbarui!");
-            window.location.href = "tokoh_masyarakat.html";
-
-        } catch (err) {
-            console.error("Gagal update:", err);
-            // Tampilkan pesan error yang lebih informatif
-            alert("Gagal update: " + err.message);
-        }
-    });
+        
+        alert("Tokoh berhasil diperbarui!");
+        window.location.href = "tokoh_masyarakat.html";
+    } catch (err) {
+        console.error("Gagal update:", err);
+        alert("Gagal update: " + err.message);
+    }
+});
       });
 
   </script>
