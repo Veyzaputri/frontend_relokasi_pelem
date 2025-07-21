@@ -96,8 +96,9 @@
         }
         return res.json();
       })
+        
       .then(data => {
-        if (data && data.userId) {
+        if (data && data.id) {
           // Langkah 2: Jika Sesi Valid, Lanjutkan Memuat Data Tokoh
           console.log("Sesi valid, memuat data tokoh...");
           loadTokoh();
