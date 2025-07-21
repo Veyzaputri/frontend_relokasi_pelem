@@ -76,7 +76,7 @@
 
 
 <script>
-  // Scroll animation trigger
+  // Scroll animation (kode ini tidak perlu diubah)
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -84,40 +84,55 @@
       }
     });
   });
-
   const hiddenElements = document.querySelectorAll('.animate-on-scroll');
   hiddenElements.forEach(el => observer.observe(el));
 
-  const form = document.querySelector('form');
+  // --- BAGIAN YANG DIPERBAIKI ---
+  const form = document.getElementById('login-form');
 
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault(); // Mencegah form submit cara lama
 
-  const username = form.querySelector('#username').value.trim();
-const password = form.querySelector('#password').value.trim();
+    const username = form.querySelector('#username').value.trim();
+    const password = form.querySelector('#password').value.trim();
 
-  try {
-    const res = await fetch('https://backend-relokasi-pelem.vercel.app/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      credentials: 'include', // agar cookie session ikut terkirim
-      body: JSON.stringify({ username, password })
-    });
+    // Validasi input dasar di frontend
+    if (!username || !password) {
+      alert("Username dan password tidak boleh kosong!");
+      return;
+    }
 
-    const data = await res.json();
-    if (res.ok) {
-  alert("Login berhasil!");
-  window.location.href = "admin_page/dashboard_admin.html";
-} else {
-  alert("Login gagal: " + data.msg);
-}
-  } catch (err) {
-    console.error('Login error:', err);
-  }
-});
+    // Menggunakan URLSearchParams untuk mengirim data sebagai x-www-form-urlencoded
+    const formData = new URLSearchParams();
+    formData.append('username', username);
+    formData.append('password', password);
 
+    try {
+      const res = await fetch('https://backend-relokasi-pelem.vercel.app/login', {
+        method: 'POST',
+        headers: {
+          // Content-Type akan otomatis diatur oleh browser ke 'application/x-www-form-urlencoded'
+          // saat menggunakan URLSearchParams di body
+        },
+        credentials: 'include', // Agar cookie session ikut terkirim
+        body: formData 
+      });
+
+      const data = await res.json(); // Membaca respons dari server
+
+      if (res.ok) { // res.ok bernilai true untuk status 200-299
+        alert("Login berhasil!");
+        window.location.href = "admin_page/dashboard_admin.html";
+      } else {
+        // Menampilkan pesan error spesifik dari backend jika ada
+        alert("Login gagal: " + (data.msg || "Terjadi kesalahan pada server."));
+      }
+
+    } catch (err) {
+      console.error('Login error:', err);
+      alert("Gagal menghubungi server. Periksa koneksi internet Anda.");
+    }
+  });
 </script>
 </body>
 </html>
