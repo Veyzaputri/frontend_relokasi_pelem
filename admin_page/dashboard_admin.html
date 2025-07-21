@@ -138,9 +138,11 @@
   return res.json();
 })
 .then(data => {
-  if (!data.userId) {
+  if (!data || !data.id) {
     alert("Sesi login Anda telah berakhir. Silakan login kembali.");
     window.location.href = "../index.html";
+  } else {
+    console.log("Login sebagai:", data.username);
   }
 })
 .catch(error => {
