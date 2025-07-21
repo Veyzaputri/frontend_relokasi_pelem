@@ -101,9 +101,7 @@
                     const defaultImage = "./image/default_news.jpg";
                     
                     // Logika Path Gambar Disesuaikan Sesuai Permintaan Anda
-                    const imagePath = berita.gambar
-                        ? `https://backend-relokasi-pelem.vercel.app/uploads/${berita.gambar}`
-                        : defaultImage;
+                    const imagePath = berita.gambar ? berita.gambar : "./image/default.jpg";
                     
                     const snippet = (berita.isi_berita || "Konten tidak tersedia.").substring(0, 120) + "...";
 
