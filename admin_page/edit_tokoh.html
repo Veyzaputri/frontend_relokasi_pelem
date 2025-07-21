@@ -203,35 +203,68 @@
       });
 
       // Submit
-      form.addEventListener("submit", async (e) => {
+     form.addEventListener("submit", async (e) => {
         e.preventDefault();
-        const formData = new FormData();
-        formData.append("nama_tokoh", namaInput.value);
-        formData.append("jabatan", jabatanInput.value);
-        if (fileInput.files[0]) {
-          formData.append("file", fileInput.files[0]);
+
+        // Cek apakah ada file baru yang dipilih
+        const fileToUpload = fileInput.files[0];
+
+        // Tentukan URL dan Opsi untuk fetch
+        const url = `https://backend-relokasi-pelem.vercel.app/tokoh/${id}`;
+        let fetchOptions;
+
+        if (fileToUpload) {
+            // JIKA ADA FILE: Kirim sebagai FormData (multipart)
+            const formData = new FormData();
+            formData.append("nama_tokoh", namaInput.value);
+            formData.append("jabatan", jabatanInput.value);
+            formData.append("file", fileToUpload);
+
+            fetchOptions = {
+                method: "PUT",
+                body: formData, // Biarkan browser mengatur Content-Type secara otomatis
+                credentials: "include",
+            };
+
+        } else {
+            // JIKA TIDAK ADA FILE: Kirim sebagai JSON
+            const body = {
+                nama_tokoh: namaInput.value,
+                jabatan: jabatanInput.value,
+            };
+
+            fetchOptions = {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json", // Set Content-Type ke JSON
+                },
+                body: JSON.stringify(body),
+                credentials: "include",
+            };
         }
 
+        // Kirim permintaan ke server
         try {
-          const res = await fetch(`https://backend-relokasi-pelem.vercel.app/tokoh/${id}`, {
-            method: "PUT",
-            body: formData,
-            credentials: "include",
-          });
+            const res = await fetch(url, fetchOptions);
 
-          const result = await res.json();
-          if (res.ok) {
+            // Cek jika response tidak OK, coba baca sebagai JSON untuk pesan error
+            if (!res.ok) {
+                const errorResult = await res.json();
+                // Tampilkan pesan error dari server jika ada
+                throw new Error(errorResult.msg || `HTTP error! status: ${res.status}`);
+            }
+
+            const result = await res.json();
             alert("Tokoh berhasil diperbarui!");
             window.location.href = "tokoh_masyarakat.html";
-          } else {
-            alert("Gagal update: " + result.msg);
-          }
+
         } catch (err) {
-          console.error("Gagal update:", err);
-          alert("Terjadi kesalahan saat mengirim data");
+            console.error("Gagal update:", err);
+            // Tampilkan pesan error yang lebih informatif
+            alert("Gagal update: " + err.message);
         }
-      });
     });
+
   </script>
 </body>
 </html>
