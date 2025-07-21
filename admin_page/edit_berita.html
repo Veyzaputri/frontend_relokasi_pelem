@@ -211,7 +211,7 @@
 
       try {
         const res = await fetch(`https://backend-relokasi-pelem.vercel.app/berita/${id}`, {
-          method: "PUT",
+          method: "PATCH",
           body: formData,
           credentials: "include",
         });
