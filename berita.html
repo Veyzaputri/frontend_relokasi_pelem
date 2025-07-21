@@ -73,22 +73,20 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", async () => {
-            // Target container baru untuk berita
             const beritaContainer = document.getElementById("beritaContainer");
 
-            // Tampilkan pesan loading
-            if (beritaContainer) {
-                beritaContainer.innerHTML = "<p style='text-align:center;'>Memuat berita...</p>";
+            if (!beritaContainer) {
+                console.error("Elemen .berita-container tidak ditemukan!");
+                return;
             }
+
+            beritaContainer.innerHTML = "<p style='text-align:center;'>Memuat berita...</p>";
 
             try {
                 const res = await fetch("https://backend-relokasi-pelem.vercel.app/berita");
-                if (!res.ok) {
-                    throw new Error(`HTTP error! status: ${res.status}`);
-                }
+                if (!res.ok) throw new Error(`Gagal mengambil data: ${res.status}`);
+                
                 const beritaList = await res.json();
-
-                // Kosongkan pesan loading
                 beritaContainer.innerHTML = "";
 
                 if (beritaList.length === 0) {
@@ -100,14 +98,23 @@
                     const card = document.createElement("div");
                     card.className = "berita-card";
 
-                    // Menangani jika path gambar tidak lengkap
-                    const imagePath = berita.gambar ? `https://backend-relokasi-pelem.vercel.app/${berita.gambar}` : "./image/default_news.jpg";
-                    const isiBerita = berita.isi_berita || "Konten tidak tersedia.";
-                    // Potong teks jika terlalu panjang
-                    const snippet = isiBerita.length > 120 ? isiBerita.substring(0, 120) + "..." : isiBerita;
+                    const defaultImage = "./image/default_news.jpg";
+                    
+                    // Logika Path Gambar Disesuaikan Sesuai Permintaan Anda
+                    const imagePath = berita.gambar
+                        ? `https://backend-relokasi-pelem.vercel.app/uploads/${berita.gambar}`
+                        : defaultImage;
+                    
+                    const snippet = (berita.isi_berita || "Konten tidak tersedia.").substring(0, 120) + "...";
 
+                    // Template Kartu Disesuaikan dengan CSS yang Sudah Dibuat
                     card.innerHTML = `
-                        <img src="${imagePath}" alt="Gambar Berita" class="berita-card-img">
+                        <img 
+                            src="${imagePath}" 
+                            alt="${berita.judul || 'Gambar Berita'}" 
+                            class="berita-card-img"
+                            onerror="this.onerror=null; this.src='${defaultImage}';"
+                        >
                         <div class="berita-card-body">
                             <span class="berita-card-kategori">Info Desa</span>
                             <h3 class="berita-card-title">${berita.judul || 'Judul Berita'}</h3>
@@ -120,9 +127,7 @@
                 });
             } catch (err) {
                 console.error("Gagal memuat berita:", err);
-                if (beritaContainer) {
-                    beritaContainer.innerHTML = "<p style='text-align:center; color: red;'>Gagal memuat berita. Silakan coba lagi nanti.</p>";
-                }
+                beritaContainer.innerHTML = "<p style='text-align:center; color: red;'>Gagal memuat berita. Periksa koneksi atau coba lagi nanti.</p>";
             }
         });
     </script>
