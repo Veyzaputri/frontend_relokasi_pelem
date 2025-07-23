@@ -861,7 +861,7 @@ main {
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
-    align-items: stretch; /* PENTING: Membuat kedua kolom sama tinggi */
+    align-items: stretch;
     background-color: #ffffff;
     border-radius: 20px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
