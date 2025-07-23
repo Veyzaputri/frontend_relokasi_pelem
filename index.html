@@ -4,178 +4,204 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <title>Website Profile Desa Relokasi Pelem</title>
 </head>
 <body>
-   <!-- Navbar -->
-  <header class="navbar">
-    <div class="container">
-      <h1 class="logo">Relokasi Pelem</h1>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="index.html">Beranda</a></li>
-          <li><a href="berita.html">Berita</a></li>
-          <li><a href="sosial_kemanusiaan.html">Sosial & Kemanusiaan</a></li>
-          <li><a href="organisasi.html">Organisasi</a></li>
-          <li><a href="sejarah.html">Sejarah</a></li>
-          <li><a href="kontak.html">Kontak Kami</a></li>
-        </ul>
-      </nav>
-      <div class="auth-buttons">
-        <button class="btn login" onclick="window.location.href='login.html'">Login</button>
-      </div>
-    </div>
-  </header> 
-   <section class="hero">
-      <div class="hero-content">
-        <h1 class="hero-title">Selamat Datang di Desa Relokasi Pelem</h1>
-        <p class="hero-subtitle">Bangkit dari Bencana, Tumbuh dengan Harapan dan Kebersamaan.</p>
-      </div>
-    </section>
-
-    <section class="explore-section">
-        <div class="section-container">
-            <h2 class="section-title">Jelajahi Desa Kami</h2>
-            <div class="explore-grid">
-                <a href="berita.html" class="explore-card">
-                    <div class="explore-icon"><i class="fas fa-newspaper"></i></div>
-                    <h3>Berita Terkini</h3>
-                    <p>Ikuti perkembangan dan kegiatan terbaru dari desa kami.</p>
-                </a>
-                <a href="sejarah.html" class="explore-card">
-                    <div class="explore-icon"><i class="fas fa-landmark"></i></div>
-                    <h3>Sejarah Desa</h3>
-                    <p>Kisah perjalanan kami dari bencana menuju harapan baru.</p>
-                </a>
-                <a href="organisasi.html" class="explore-card">
-                    <div class="explore-icon"><i class="fas fa-users"></i></div>
-                    <h3>Organisasi Pemuda</h3>
-                    <p>Mengenal lebih dekat IPP Sebaya, motor penggerak kreativitas.</p>
-                </a>
+    <header class="navbar">
+        <div class="container">
+            <h1 class="logo">Relokasi Pelem</h1>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="berita.html">Berita</a></li>
+                    <li><a href="sosial_kemanusiaan.html">Sosial & Kemanusiaan</a></li>
+                    <li><a href="organisasi.html">Organisasi</a></li>
+                    <li><a href="sejarah.html">Sejarah</a></li>
+                    <li><a href="kontak.html">Kontak Kami</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <button class="btn login" onclick="window.location.href='login.html'">Login</button>
+            </div>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
             </div>
         </div>
-    </section>
+    </header>
 
-    <section class="video-section">
-      <div class="section-container">
-        <h2 class="section-title">Video Profil Desa</h2>
-        <div class="video-wrapper">
-          <video controls poster="./image/thumbnail.jpg">
-            <source src="./video/vid_example.mp4" type="video/mp4">
-            Browser Anda tidak mendukung tag video.
-          </video>
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Selamat Datang di Desa Relokasi Pelem</h1>
+                <p class="hero-subtitle">Bangkit dari Bencana, Tumbuh dengan Harapan dan Kebersamaan.</p>
+            </div>
+        </section>
+
+        <section class="explore-section">
+            <div class="section-container">
+                <h2 class="section-title">Jelajahi Desa Kami</h2>
+                <div class="explore-grid">
+                    <a href="berita.html" class="explore-card">
+                        <div class="explore-icon"><i class="fas fa-newspaper"></i></div>
+                        <h3>Berita Terkini</h3>
+                        <p>Ikuti perkembangan dan kegiatan terbaru dari desa kami.</p>
+                    </a>
+                    <a href="sejarah.html" class="explore-card">
+                        <div class="explore-icon"><i class="fas fa-landmark"></i></div>
+                        <h3>Sejarah Desa</h3>
+                        <p>Kisah perjalanan kami dari bencana menuju harapan baru.</p>
+                    </a>
+                    <a href="organisasi.html" class="explore-card">
+                        <div class="explore-icon"><i class="fas fa-users"></i></div>
+                        <h3>Organisasi Pemuda</h3>
+                        <p>Mengenal lebih dekat IPP Sebaya, motor penggerak kreativitas.</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="video-section">
+            <div class="section-container">
+                <h2 class="section-title">Video Profil Desa</h2>
+                <div class="video-wrapper">
+                    <video controls poster="./image/thumbnail.jpg">
+                        <source src="./video/vid_example.mp4" type="video/mp4">
+                        Browser Anda tidak mendukung tag video.
+                    </video>
+                </div>
+            </div>
+        </section>
+
+        <section class="tokoh-section animate-on-scroll">
+            <h2>Tokoh Masyarakat Desa Relokasi Pelem</h2>
+            <div class="tokoh-grid">
+                </div>
+        </section>
+    </main>
+    
+    <footer class="footer-section">
+        <div class="footer-container">
+            <div class="footer-contact">
+                <h3>Kontak</h3>
+                <p><strong>Alamat :</strong> Dusun Relokasi Pelem, Kalurahan Girikerto, Kapanewon Turi, Kabupaten Sleman, DIY</p>
+            </div>
+            <div class="footer-social">
+                <h4>Follow us :</h4>
+                <div class="social-icons">
+                    <a href="https://instagram.com/ipp_sebaya" target="_blank">
+                        <img src="./image/ig.png" alt="Instagram"> @ipp_sebaya
+                    </a>
+                    <a href="https://facebook.com/Ipp Sebaya" target="_blank">
+                        <img src="./image/fb.png" alt="Facebook"> Ipp Sebaya
+                    </a>
+                    <a href="https://tiktok.com/@ipp_sebaya" target="_blank">
+                        <img src="./image/tt.png" alt="TikTok"> ipp_sebaya
+                    </a>
+                </div>
+            </div>
         </div>
-      </div>
-    </section>
+        <p class="copyright">© 2025 Desa Relokasi Pelem. All rights reserved.</p>
+    </footer>
 
-<section class="tokoh-section animate-on-scroll">
-  <h2>Tokoh Masyarakat Desa Relokasi Pelem</h2>
-  <div class="tokoh-grid">
-    <!-- Tokoh akan dimuat di sini via JavaScript -->
-  </div>
-</section>
+    <script>
+        // --- Kode untuk Navigasi Burger Menu ---
+        const navSlide = () => {
+            const burger = document.querySelector('.burger');
+            const nav = document.querySelector('.nav-links');
+            const navLinks = document.querySelectorAll('.nav-links li');
 
-<footer class="footer-section">
-  <div class="footer-container">
-    <div class="footer-contact">
-      <h3>Kontak</h3>
-      <p><strong>Alamat :</strong> Dusun Relokasi Pelem, Kalurahan Girikerto, Kapanewon Turi, Kabupaten Sleman, DIY</p>
-    </div>
-    <div class="footer-social">
-      <h4>Follow us :</h4>
-      <div class="social-icons">
-        <a href="https://instagram.com/ipp_sebaya" target="_blank">
-          <img src="./image/ig.png" alt="Instagram">
-          @ipp_sebaya
-        </a>
-        <a href="https://facebook.com/Ipp Sebaya" target="_blank">
-          <img src="./image/fb.png" alt="Facebook">
-          Ipp Sebaya
-        </a>
-        <a href="https://tiktok.com/@ipp_sebaya" target="_blank">
-          <img src="./image/tt.png" alt="TikTok">
-          ipp_sebaya
-        </a>
-      </div>
-    </div>
-  </div>
-      <p class="copyright">© 2025 Desa Relokasi Pelem. All rights reserved.</p>
+            // Cek apakah elemen burger ada di halaman
+            if (burger) {
+                burger.addEventListener('click', () => {
+                    // Toggle Nav
+                    nav.classList.toggle('nav-active');
 
-</footer>
-</body>
-</html>
+                    // Animate Links
+                    navLinks.forEach((link, index) => {
+                        if (link.style.animation) {
+                            link.style.animation = '';
+                        } else {
+                            link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.5}s`;
+                        }
+                    });
+                    
+                    // Burger Animation
+                    burger.classList.toggle('toggle');
+                });
+            }
+        }
+        navSlide();
+        
+        // --- Kode untuk Scroll Animation ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        });
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
 
+        // --- Kode untuk Mengambil dan Menampilkan Data Tokoh ---
+        document.addEventListener("DOMContentLoaded", async () => {
+            const container = document.querySelector(".tokoh-grid");
 
-<script>
-    const navSlide = () => {
-    const burger = document.querySelector('.burger');
-    const nav = document.querySelector('.nav-links');
-    const navLinks = document.querySelectorAll('.nav-links li');
+            // Pastikan container ditemukan sebelum melanjutkan
+            if (!container) {
+                console.error("Elemen .tokoh-grid tidak ditemukan.");
+                return;
+            }
 
-    burger.addEventListener('click', () => {
-        // Toggle Nav
-        nav.classList.toggle('nav-active');
+            try {
+                const res = await fetch("https://backend-relokasi-pelem.vercel.app/tokoh");
 
-        // Animate Links
-        navLinks.forEach((link, index) => {
-            if (link.style.animation) {
-                link.style.animation = '';
-            } else {
-                link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.5}s`;
+                // Cek jika response tidak OK (misal: error 404 atau 500)
+                if (!res.ok) {
+                    throw new Error(`Gagal mengambil data, status: ${res.status}`);
+                }
+
+                const tokohList = await res.json();
+
+                if (!Array.isArray(tokohList)) {
+                    container.innerHTML = "<p>Gagal memuat data tokoh: Format data tidak sesuai.</p>";
+                    console.error("Data yang diterima bukan array:", tokohList);
+                    return;
+                }
+                
+                // Jika data kosong
+                if (tokohList.length === 0) {
+                    container.innerHTML = "<p>Saat ini belum ada data tokoh yang tersedia.</p>";
+                    return;
+                }
+
+                container.innerHTML = ""; // Kosongkan container sebelum diisi
+
+                tokohList.forEach(tokoh => {
+                    const card = document.createElement("div");
+                    card.className = "tokoh-card";
+
+                    const imagePath = tokoh.gambar ? `https://backend-relokasi-pelem.vercel.app${tokoh.gambar}` : "./image/default.jpg";
+
+                    card.innerHTML = `
+                        <img src="${imagePath}" alt="Foto ${tokoh.nama_tokoh}" onerror="this.onerror=null;this.src='./image/default.jpg';">
+                        <div class="tokoh-info">
+                            <p class="tokoh-nama"><strong>${tokoh.nama_tokoh}</strong></p>
+                            <p class="tokoh-jabatan">${tokoh.jabatan}</p>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+
+            } catch (err) {
+                console.error("Gagal memuat data tokoh:", err);
+                container.innerHTML = "<p>Terjadi kesalahan saat memuat data tokoh. Silakan coba lagi nanti.</p>";
             }
         });
-        
-        // Burger Animation
-        burger.classList.toggle('toggle');
-    });
-}
+    </script>
 
-navSlide();
-    
-  // Scroll animation
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('show');
-      }
-    });
-  });
-  document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
-
-  // Ambil dan tampilkan data tokoh masyarakat
-  document.addEventListener("DOMContentLoaded", async () => {
-    const container = document.querySelector(".tokoh-grid");
-
-    try {
-      const res = await fetch("https://backend-relokasi-pelem.vercel.app/tokoh");
-      const tokohList = await res.json();
-
-      if (!Array.isArray(tokohList)) {
-        container.innerHTML = "<p>Gagal memuat data tokoh.</p>";
-        return;
-      }
-
-      container.innerHTML = ""; // Kosongkan sebelum isi ulang
-
-      tokohList.forEach(tokoh => {
-        const card = document.createElement("div");
-        card.className = "tokoh-card";
-
-        const imagePath = tokoh.gambar ? tokoh.gambar : "./image/default.jpg";
-
-        card.innerHTML = `
-          <img src="${imagePath}" alt="${tokoh.nama_tokoh}">
-          <p><strong>${tokoh.nama_tokoh}</strong><br>${tokoh.jabatan}</p>
-        `;
-        container.appendChild(card);
-      });
-
-    } catch (err) {
-      console.error("Gagal memuat tokoh:", err);
-      container.innerHTML = "<p>Terjadi kesalahan saat memuat data tokoh.</p>";
-    }
-  });
-</script>
 </body>
 </html>
