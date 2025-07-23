@@ -270,13 +270,19 @@ main {
 }
 
 .tokoh-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px;
-  max-width: 1000px;
-  margin: auto;
+  display: flex;
+    flex-direction: column; /* Baris akan tersusun ke bawah */
+    align-items: center; /* Pusatkan semua baris secara horizontal */
+    gap: 30px; /* Jarak antar baris */
+    max-width: 1000px;
+    margin: auto;
+}
+.tokoh-row {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center; /* Ini kunci agar kartu berada di tengah baris */
+    gap: 30px; /* Jarak antar kartu di dalam satu baris */
+    width: 100%;
 }
 
 .tokoh-card {
