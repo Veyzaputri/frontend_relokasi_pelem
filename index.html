@@ -148,59 +148,38 @@
 
         // --- Kode untuk Mengambil dan Menampilkan Data Tokoh ---
         document.addEventListener("DOMContentLoaded", async () => {
-            const container = document.querySelector(".tokoh-grid");
+    const container = document.querySelector(".tokoh-grid");
 
-            // Pastikan container ditemukan sebelum melanjutkan
-            if (!container) {
-                console.error("Elemen .tokoh-grid tidak ditemukan.");
-                return;
-            }
+    try {
+      const res = await fetch("https://backend-relokasi-pelem.vercel.app/tokoh");
+      const tokohList = await res.json();
 
-            try {
-                const res = await fetch("https://backend-relokasi-pelem.vercel.app/tokoh");
+      if (!Array.isArray(tokohList)) {
+        container.innerHTML = "<p>Gagal memuat data tokoh.</p>";
+        return;
+      }
 
-                // Cek jika response tidak OK (misal: error 404 atau 500)
-                if (!res.ok) {
-                    throw new Error(`Gagal mengambil data, status: ${res.status}`);
-                }
+      container.innerHTML = ""; // Kosongkan sebelum isi ulang
 
-                const tokohList = await res.json();
+      tokohList.forEach(tokoh => {
+        const card = document.createElement("div");
+        card.className = "tokoh-card";
 
-                if (!Array.isArray(tokohList)) {
-                    container.innerHTML = "<p>Gagal memuat data tokoh: Format data tidak sesuai.</p>";
-                    console.error("Data yang diterima bukan array:", tokohList);
-                    return;
-                }
-                
-                // Jika data kosong
-                if (tokohList.length === 0) {
-                    container.innerHTML = "<p>Saat ini belum ada data tokoh yang tersedia.</p>";
-                    return;
-                }
+        const imagePath = tokoh.gambar ? tokoh.gambar : "./image/default.jpg";
 
-                container.innerHTML = ""; // Kosongkan container sebelum diisi
+        card.innerHTML = `
+          <img src="${imagePath}" alt="${tokoh.nama_tokoh}">
+          <p><strong>${tokoh.nama_tokoh}</strong><br>${tokoh.jabatan}</p>
+        `;
+        container.appendChild(card);
+      });
 
-                tokohList.forEach(tokoh => {
-                    const card = document.createElement("div");
-                    card.className = "tokoh-card";
+    } catch (err) {
+      console.error("Gagal memuat tokoh:", err);
+      container.innerHTML = "<p>Terjadi kesalahan saat memuat data tokoh.</p>";
+    }
+  });
 
-                    const imagePath = tokoh.gambar ? `https://backend-relokasi-pelem.vercel.app${tokoh.gambar}` : "./image/default.jpg";
-
-                    card.innerHTML = `
-                        <img src="${imagePath}" alt="Foto ${tokoh.nama_tokoh}" onerror="this.onerror=null;this.src='./image/default.jpg';">
-                        <div class="tokoh-info">
-                            <p class="tokoh-nama"><strong>${tokoh.nama_tokoh}</strong></p>
-                            <p class="tokoh-jabatan">${tokoh.jabatan}</p>
-                        </div>
-                    `;
-                    container.appendChild(card);
-                });
-
-            } catch (err) {
-                console.error("Gagal memuat data tokoh:", err);
-                container.innerHTML = "<p>Terjadi kesalahan saat memuat data tokoh. Silakan coba lagi nanti.</p>";
-            }
-        });
     </script>
 
 </body>
