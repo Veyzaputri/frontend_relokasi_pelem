@@ -31,7 +31,7 @@
                 <div class="line3"></div>
             </div>
         </div>
-    </header>
+    </header> 
 
     <main>
         <section class="hero">
@@ -78,11 +78,11 @@
 
         <section class="tokoh-section animate-on-scroll">
             <h2>Tokoh Masyarakat Desa Relokasi Pelem</h2>
-            <div class="tokoh-grid">
-                </div>
+            <div class="tokoh-grid"> 
+            </div>
         </section>
     </main>
-    
+
     <footer class="footer-section">
         <div class="footer-container">
             <div class="footer-contact">
@@ -92,95 +92,106 @@
             <div class="footer-social">
                 <h4>Follow us :</h4>
                 <div class="social-icons">
-                    <a href="https://instagram.com/ipp_sebaya" target="_blank">
-                        <img src="./image/ig.png" alt="Instagram"> @ipp_sebaya
-                    </a>
-                    <a href="https://facebook.com/Ipp Sebaya" target="_blank">
-                        <img src="./image/fb.png" alt="Facebook"> Ipp Sebaya
-                    </a>
-                    <a href="https://tiktok.com/@ipp_sebaya" target="_blank">
-                        <img src="./image/tt.png" alt="TikTok"> ipp_sebaya
-                    </a>
+                    <a href="https://instagram.com/ipp_sebaya" target="_blank"><img src="./image/ig.png" alt="Instagram">@ipp_sebaya</a>
+                    <a href="https://facebook.com/Ipp Sebaya" target="_blank"><img src="./image/fb.png" alt="Facebook">Ipp Sebaya</a>
+                    <a href="https://tiktok.com/@ipp_sebaya" target="_blank"><img src="./image/tt.png" alt="TikTok">ipp_sebaya</a>
                 </div>
             </div>
         </div>
         <p class="copyright">© 2025 Desa Relokasi Pelem. All rights reserved.</p>
     </footer>
 
-    <script>
-        // --- Kode untuk Navigasi Burger Menu ---
-        const navSlide = () => {
-            const burger = document.querySelector('.burger');
-            const nav = document.querySelector('.nav-links');
-            const navLinks = document.querySelectorAll('.nav-links li');
-
-            // Cek apakah elemen burger ada di halaman
-            if (burger) {
-                burger.addEventListener('click', () => {
-                    // Toggle Nav
-                    nav.classList.toggle('nav-active');
-
-                    // Animate Links
-                    navLinks.forEach((link, index) => {
-                        if (link.style.animation) {
-                            link.style.animation = '';
-                        } else {
-                            link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.5}s`;
-                        }
-                    });
-                    
-                    // Burger Animation
-                    burger.classList.toggle('toggle');
+<script>
+    // --- Script untuk Navigasi Mobile ---
+    const navSlide = () => {
+        const burger = document.querySelector('.burger');
+        const nav = document.querySelector('.nav-links');
+        const navLinks = document.querySelectorAll('.nav-links li');
+        if (burger) {
+            burger.addEventListener('click', () => {
+                nav.classList.toggle('nav-active');
+                navLinks.forEach((link, index) => {
+                    if (link.style.animation) {
+                        link.style.animation = '';
+                    } else {
+                        link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.5}s`;
+                    }
                 });
-            }
-        }
-        navSlide();
-        
-        // --- Kode untuk Scroll Animation ---
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('show');
-                }
+                burger.classList.toggle('toggle');
             });
-        });
-        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
-
-        // --- Kode untuk Mengambil dan Menampilkan Data Tokoh ---
-        document.addEventListener("DOMContentLoaded", async () => {
-    const container = document.querySelector(".tokoh-grid");
-
-    try {
-      const res = await fetch("https://backend-relokasi-pelem.vercel.app/tokoh");
-      const tokohList = await res.json();
-
-      if (!Array.isArray(tokohList)) {
-        container.innerHTML = "<p>Gagal memuat data tokoh.</p>";
-        return;
-      }
-
-      container.innerHTML = ""; // Kosongkan sebelum isi ulang
-
-      tokohList.forEach(tokoh => {
-        const card = document.createElement("div");
-        card.className = "tokoh-card";
-
-        const imagePath = tokoh.gambar ? tokoh.gambar : "./image/default.jpg";
-
-        card.innerHTML = `
-          <img src="${imagePath}" alt="${tokoh.nama_tokoh}">
-          <p><strong>${tokoh.nama_tokoh}</strong><br>${tokoh.jabatan}</p>
-        `;
-        container.appendChild(card);
-      });
-
-    } catch (err) {
-      console.error("Gagal memuat tokoh:", err);
-      container.innerHTML = "<p>Terjadi kesalahan saat memuat data tokoh.</p>";
+        }
     }
-  });
+    navSlide();
+    
+    // --- Script untuk Animasi Scroll ---
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+            }
+        });
+    });
+    document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
 
-    </script>
+    // --- Script untuk Data Tokoh Masyarakat dengan Layout Baru ---
+    document.addEventListener("DOMContentLoaded", async () => {
+        const container = document.querySelector(".tokoh-grid");
+        if (!container) return;
 
+        try {
+            const res = await fetch("https://backend-relokasi-pelem.vercel.app/tokoh");
+            const tokohList = await res.json();
+            if (!Array.isArray(tokohList)) throw new Error('Data tidak valid');
+
+            container.innerHTML = ""; // Kosongkan container
+
+            const data = [...tokohList]; // Buat salinan data agar bisa diubah
+
+            // Fungsi untuk membuat satu kartu tokoh
+            function createTokohCard(tokoh) {
+                const card = document.createElement("div");
+                card.className = "tokoh-card";
+                const imagePath = tokoh.gambar ? tokoh.gambar : "./image/default.jpg";
+                card.innerHTML = `
+                    <img src="${imagePath}" alt="${tokoh.nama_tokoh}" onerror="this.onerror=null;this.src='./image/default.jpg';">
+                    <p><strong>${tokoh.nama_tokoh}</strong><br>${tokoh.jabatan}</p>
+                `;
+                return card;
+            }
+
+            // Fungsi untuk membuat satu baris
+            function createRow() {
+                const row = document.createElement("div");
+                row.className = "tokoh-row";
+                return row;
+            }
+
+            // Aturan untuk membuat baris sesuai keinginan Anda
+            const layoutRules = [1, 2, 4]; // Baris pertama 1 item, baris kedua 2 item, dst.
+            
+            // Membuat baris sesuai aturan
+            for (const rule of layoutRules) {
+                if (data.length === 0) break; // Berhenti jika data sudah habis
+                
+                const row = createRow();
+                const items = data.splice(0, rule); // Ambil data sesuai jumlah aturan
+                items.forEach(item => row.appendChild(createTokohCard(item)));
+                container.appendChild(row);
+            }
+
+            // Untuk sisa data, buat baris dengan 4 item
+            while (data.length > 0) {
+                const row = createRow();
+                const items = data.splice(0, 4); // Ambil 4 item untuk baris selanjutnya
+                items.forEach(item => row.appendChild(createTokohCard(item)));
+                container.appendChild(row);
+            }
+
+        } catch (err) {
+            console.error("Gagal memuat tokoh:", err);
+            container.innerHTML = "<p>Terjadi kesalahan saat memuat data tokoh.</p>";
+        }
+    });
+</script>
 </body>
 </html>
