@@ -852,34 +852,54 @@ main {
 
 .kontak-container {
   max-width: 1100px;
-  margin: 120px auto 40px;
-  padding: 50px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap; /* Agar bisa turun ke bawah di layar kecil */
+  align-items: center;
   background-color: #ffffff;
   border-radius: 20px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  display: flex;
-  align-items: center;
-  gap: 50px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+.kontak-detail p {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 25px;
+    font-size: 16px;
+    color: #333;
 }
 
+.kontak-detail .fas {
+    font-size: 20px;
+    color: #3f5d45;
+    margin-right: 20px;
+    margin-top: 5px;
+    width: 22px;
+    text-align: center;
+}
+
+.kontak-detail span {
+    line-height: 1.6;
+}
+
+
 .kontak-kiri {
-  flex: 1.2; /* Memberi lebih banyak ruang untuk teks */
+  flex: 1 1 50%; 
+  padding: 50px;
 }
 
 .kontak-kiri h2 {
   font-size: 32px;
   font-weight: 600;
-  margin-bottom: 30px;
-  color: #222;
+  margin-bottom: 15px;
+  color: #3f5d45;
 }
 
 .kontak-kiri p {
-  display: flex;
-  align-items: flex-start;
   font-size: 16px;
-  margin-bottom: 20px;
-  color: #333;
-  line-height: 1.6;
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 30px;
 }
 
 .kontak-kiri .fas {
@@ -892,18 +912,20 @@ main {
 }
 
 .kontak-kanan {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  flex: 1 1 50%;
+  min-height: 500px;
 }
 
 .kontak-kanan iframe {
   width: 100%;
-  height: 350px;
-  border: none;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    height: 100%;
+    border: none;
+    vertical-align: middle;
+}
+.kontak-page-section {
+    padding: 60px 20px;
+    background-color: #f4f6f9; /* Latar belakang abu-abu lembut */
+    margin-top: 65px; /* Memberi jarak dari navbar yang fixed */
 }
 
 .hero-panti {
@@ -1346,5 +1368,21 @@ main {
     }
     .toggle .line3 {
         transform: rotate(45deg) translate(-5px, -6px);
+    }
+}
+@media (max-width: 900px) {
+    .kontak-container {
+        flex-direction: column; /* Konten ditumpuk ke bawah */
+    }
+
+    .kontak-kiri {
+        padding: 40px 30px;
+        width: 100%;
+    }
+    
+    .kontak-kanan {
+        width: 100%;
+        height: 350px; /* Sesuaikan tinggi peta untuk mobile */
+        min-height: 350px;
     }
 }
