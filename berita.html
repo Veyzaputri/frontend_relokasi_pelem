@@ -61,7 +61,7 @@
             <div class="footer-social">
                 <h4>Follow us :</h4>
                 <div class="social-icons">
-                    <a href="https://instagram.com/ipp_sebaya" target="_blank">
+                     <a href="https://instagram.com/ipp_sebaya" target="_blank">
                         <img src="./image/ig.png" alt="Instagram"> @ipp_sebaya
                     </a>
                     <a href="https://facebook.com/ipp_sebaya" target="_blank">
@@ -99,16 +99,24 @@
         }
         navSlide();
 
-        // --- Kode untuk Memuat Berita ---
+        // --- Kode untuk Memuat Berita & Interaksi Kartu ---
         document.addEventListener("DOMContentLoaded", async () => {
             const beritaContainer = document.getElementById("beritaContainer");
-
-            if (!beritaContainer) {
-                console.error("Elemen .berita-container tidak ditemukan!");
-                return;
-            }
+            if (!beritaContainer) return;
 
             beritaContainer.innerHTML = "<p style='text-align:center;'>Memuat berita...</p>";
+
+            function formatSentenceCase(str) {
+                if (!str) return '';
+                const letters = str.match(/[a-zA-Z]/g) || [];
+                const upper = str.match(/[A-Z]/g) || [];
+                const isAllCaps = (upper.length / letters.length) > 0.8 && letters.length > 20;
+
+                if (!isAllCaps) return str;
+
+                const lower = str.toLowerCase();
+                return lower.charAt(0).toUpperCase() + lower.slice(1);
+            }
 
             try {
                 const res = await fetch("https://backend-relokasi-pelem.vercel.app/berita");
@@ -129,6 +137,15 @@
                     const defaultImage = "./image/default_news.jpg";
                     const imagePath = berita.gambar ? berita.gambar : defaultImage;
 
+                    // =========================================================================
+                    // PERUBAHAN UTAMA: Memisahkan judul dan sisa konten
+                    // =========================================================================
+                    const isiLengkap = formatSentenceCase(berita.isi_berita || '');
+                    const paragraf = isiLengkap.split('\n').filter(p => p.trim() !== ''); // Pisahkan per paragraf
+
+                    const judul = paragraf.length > 0 ? paragraf.shift() : 'Judul tidak tersedia'; // Ambil paragraf pertama
+                    const sisaKonten = paragraf.join('<br><br>'); // Gabungkan sisanya
+
                     card.innerHTML = `
                         <img 
                             src="${imagePath}" 
@@ -137,14 +154,33 @@
                             onerror="this.onerror=null; this.src='${defaultImage}';"
                         >
                         <div class="berita-card-body">
-                             <h3>${berita.isi_berita || 'Judul Tidak Tersedia'}</h3>
-                            <p class="berita-card-snippet">${berita.isi_berita || 'Konten tidak tersedia.'}</p>
-                             <a href="#" class="btn-berita">Baca Selengkapnya</a>
+                            <h3>${judul}</h3>
+                            <div class="berita-konten-lengkap" style="display: none;">
+                                <p>${sisaKonten}</p>
+                            </div>
+                            ${sisaKonten ? '<a href="#" class="btn-berita">Baca Selengkapnya</a>' : ''}
                         </div>
                     `;
 
                     beritaContainer.appendChild(card);
                 });
+
+                // Menambahkan event listener ke container untuk menangani semua tombol
+                beritaContainer.addEventListener('click', function(e) {
+                    if (e.target.classList.contains('btn-berita')) {
+                        e.preventDefault(); // Mencegah link berpindah halaman
+
+                        const cardBody = e.target.closest('.berita-card-body');
+                        const kontenLengkap = cardBody.querySelector('.berita-konten-lengkap');
+                        
+                        // Cek apakah konten sedang ditampilkan atau tidak
+                        const isHidden = kontenLengkap.style.display === 'none';
+
+                        kontenLengkap.style.display = isHidden ? 'block' : 'none';
+                        e.target.textContent = isHidden ? 'Tutup' : 'Baca Selengkapnya';
+                    }
+                });
+
             } catch (err) {
                 console.error("Gagal memuat berita:", err);
                 beritaContainer.innerHTML = "<p style='text-align:center; color: red;'>Gagal memuat berita. Periksa koneksi atau coba lagi nanti.</p>";
