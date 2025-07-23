@@ -16,6 +16,10 @@ body {
 
 
 }
+
+main {
+  flex: 1;
+}
 /* Navbar */
 .navbar {
   background-color: #3f5d45;
