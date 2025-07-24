@@ -88,6 +88,17 @@
 
         beritaContainer.innerHTML = "<p style='text-align:center;'>Memuat berita...</p>";
 
+        // Fungsi untuk format teks (jika semua huruf besar)
+        function formatSentenceCase(str) {
+            if (!str) return '';
+            const letters = str.match(/[a-zA-Z]/g) || [];
+            const upper = str.match(/[A-Z]/g) || [];
+            const isAllCaps = (upper.length / letters.length) > 0.8 && letters.length > 20;
+            if (!isAllCaps) return str;
+            const lower = str.toLowerCase();
+            return lower.charAt(0).toUpperCase() + lower.slice(1);
+        }
+
         try {
             const res = await fetch("https://backend-relokasi-pelem.vercel.app/berita", { credentials: "include" });
             const beritaList = await res.json();
@@ -103,23 +114,21 @@
                 const card = document.createElement("div");
                 card.className = "berita-card";
 
-                // Menggunakan 'url' dari backend untuk gambar
-                const imagePath = berita.url ? berita.url : "../image/default_news.jpg";
+                const imagePath = berita.gambar ? berita.gambar : "../image/default_news.jpg";
                 
-                // Mengambil paragraf pertama sebagai judul
-                const isiLengkap = berita.isi_berita || '';
+                const isiLengkap = formatSentenceCase(berita.isi_berita || '');
                 const paragraf = isiLengkap.split('\\n').filter(p => p.trim() !== '');
-                const judul = paragraf.length > 0 ? paragraf[0] : 'Judul tidak tersedia';
+                const judul = paragraf.length > 0 ? paragraf.shift() : 'Judul tidak tersedia';
+                const sisaKonten = paragraf.join('<br><br>');
 
-                // =========================================================================
-                // PERUBAHAN UTAMA: Struktur kartu disamakan dengan berita.html,
-                // namun ditambahkan div untuk tombol admin.
-                // =========================================================================
                 card.innerHTML = `
                     <img src="${imagePath}" alt="Gambar Berita" class="berita-card-img" onerror="this.onerror=null;this.src='../image/default_news.jpg';">
                     <div class="berita-card-body">
                         <h3>${judul}</h3>
-                        <p class="berita-card-snippet">Klik tombol Edit untuk melihat dan mengubah detail...</p>
+                        <div class="berita-konten-lengkap" style="display: none;">
+                            <p>${sisaKonten}</p>
+                        </div>
+                        ${sisaKonten ? '<a href="#" class="btn-berita">Baca Selengkapnya</a>' : ''}
                     </div>
                     <div class="berita-card-actions">
                         <button class="btn edit-berita" onclick="editBerita(${berita.id_berita})">✏️ Edit</button>
@@ -128,6 +137,19 @@
                 `;
                 beritaContainer.appendChild(card);
             });
+            
+            // Menambahkan event listener untuk tombol "Baca Selengkapnya"
+            beritaContainer.addEventListener('click', function(e) {
+                if (e.target.classList.contains('btn-berita')) {
+                    e.preventDefault();
+                    const cardBody = e.target.closest('.berita-card-body');
+                    const kontenLengkap = cardBody.querySelector('.berita-konten-lengkap');
+                    const isHidden = kontenLengkap.style.display === 'none';
+                    kontenLengkap.style.display = isHidden ? 'block' : 'none';
+                    e.target.textContent = isHidden ? 'Tutup' : 'Baca Selengkapnya';
+                }
+            });
+
         } catch (err) {
             beritaContainer.innerHTML = "<p style='text-align:center; color: red;'>Gagal memuat berita.</p>";
             console.error(err);
