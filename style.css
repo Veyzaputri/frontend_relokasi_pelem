@@ -1328,7 +1328,7 @@ main {
         padding: 40px 20px;
     }
   .kontak-page-section {
-        padding-top: 30px;    /* Kurangi padding atas */
+        padding-top: 20px;    /* Kurangi padding atas */
         padding-bottom: 30px; /* Kurangi padding bawah */
     }
 
@@ -1341,6 +1341,9 @@ main {
         flex-direction: column;
         margin-top: 0;
         padding: 15px;
+    }
+  .kontak-kiri p:last-of-type {
+        margin-bottom: 0;
     }
 
     /* Menyesuaikan tinggi peta */
