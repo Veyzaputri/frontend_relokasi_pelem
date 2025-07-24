@@ -4,173 +4,235 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="../style.css">
-    <title>Website Profile Desa Relokasi Pelem</title>
+    <title>Dashboard Admin - Desa Relokasi Pelem</title>
 </head>
 <body>
-   <!-- Navbar -->
-  <header class="navbar">
-    <div class="container">
-      <h1 class="logo">Relokasi Pelem</h1>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="dashboard_admin.html">Beranda</a></li>
-          <li><a href="berita_admin.html">Berita</a></li>
-          <li><a href="sosial_kemanusiaan.html">Sosial & Kemanusiaan</a></li>
-          <li><a href="tokoh_masyarakat.html">Tokoh Masyarakat</a></li>
-          <li><a href="#">Organisasi</a></li>
-          <li><a href="#">Kontak Kami</a></li>
-        </ul>
-      </nav>
-      <div class="auth-buttons">
-        <button class="btn logout" >Logout</button>
-      </div>
-    </div>
-  </header> 
+    <header class="navbar">
+        <div class="container">
+            <h1 class="logo">Relokasi Pelem</h1>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="dashboard_admin.html">Beranda</a></li>
+                    <li><a href="berita_admin.html">Berita</a></li>
+                    <li><a href="sosial_kemanusiaan.html">Sosial & Kemanusiaan</a></li>
+                    <li><a href="tokoh_masyarakat.html">Tokoh Masyarakat</a></li>
+                    <li><a href="#">Organisasi</a></li>
+                    <li><a href="#">Kontak Kami</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <button class="btn logout">Logout</button>
+            </div>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </div>
+    </header>
 
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Dasbor Admin</h1>
+                <p class="hero-subtitle">Selamat Datang, Admin. Kelola konten website dari sini.</p>
+            </div>
+        </section>
 
-  <section class="hero">
-    <div class="hero-text animate-fade-in">
-      <h2>Website Profil Desa</h2>
-      <h1>RELOKASI PELEM</h1>
-    </div>
-  </section>
-  <section class="video-section animate-on-scroll">
-  <div class="video-container">
-    <h2 class="animate-on-scroll">Video Profil Desa Relokasi Pelem</h2>
-    <div class="video-frame animate-on-scroll">
-      <video controls poster="../video/vid_example.mp4">
-        <source src="../video/vid_example.mp4" type="video/mp4">
-        Browser Anda tidak mendukung video ini.
-      </video>
-    </div>
-  </div>
-</section>
+        <section class="explore-section">
+            <div class="section-container">
+                <h2 class="section-title">Kelola Konten</h2>
+                <div class="explore-grid">
+                    <a href="berita_admin.html" class="explore-card">
+                        <div class="explore-icon"><i class="fas fa-newspaper"></i></div>
+                        <h3>Kelola Berita</h3>
+                        <p>Tambah, edit, atau hapus artikel dan berita terkini.</p>
+                    </a>
+                    <a href="tokoh_masyarakat.html" class="explore-card">
+                        <div class="explore-icon"><i class="fas fa-user-tie"></i></div>
+                        <h3>Kelola Tokoh</h3>
+                        <p>Kelola daftar tokoh masyarakat yang ditampilkan di website.</p>
+                    </a>
+                    <a href="#" class="explore-card">
+                        <div class="explore-icon"><i class="fas fa-users"></i></div>
+                        <h3>Kelola Organisasi</h3>
+                        <p>Perbarui informasi mengenai organisasi pemuda IPP Sebaya.</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="video-section">
+            <div class="section-container">
+                <h2 class="section-title">Video Profil Desa</h2>
+                <div class="video-wrapper">
+                    <video controls poster="../image/thumbnail.jpg">
+                        <source src="../video/vid_example.mp4" type="video/mp4">
+                        Browser Anda tidak mendukung tag video.
+                    </video>
+                </div>
+            </div>
+        </section>
 
-<section class="tokoh-section animate-on-scroll">
-  <h2>Tokoh Masyarakat Desa Relokasi Pelem</h2>
-  <div class="tokoh-grid">
-    <div class="tokoh-card">
-      <img src="../image/Pak_RW_example.jpg" alt="Ketua RW">
-      <p>Ketua RW</p>
-    </div>
-    <div class="tokoh-card">
-      <img src="../image/Pak_RW_example.jpg" alt="Wakil Ketua RW">
-      <p>Wakil Ketua RW</p>
-    </div>
-    <div class="tokoh-card">
-      <img src="../image/Pak_RW_example.jpg" alt="Sekretaris Desa">
-      <p>Sekretaris Desa</p>
-    </div>
-    <div class="tokoh-card">
-      <img src="../image/Pak_RW_example.jpg" alt="Pengurus">
-      <p>Pengurus</p>
-    </div>
+        <section class="tokoh-section animate-on-scroll">
+            <h2>Tokoh Masyarakat Desa Relokasi Pelem</h2>
+            <div class="tokoh-grid"> 
+                </div>
+        </section>
+    </main>
 
-    <div class="tokoh-card">
-      <img src="../image/Pak_RW_example.jpg" alt="Ketua RW">
-      <p>Ketua RW</p>
-    </div>
-    <div class="tokoh-card">
-      <img src="../image/Pak_RW_example.jpg" alt="Wakil Ketua RW">
-      <p>Wakil Ketua RW</p>
-    </div>
-    <div class="tokoh-card">
-      <img src="../image/Pak_RW_example.jpg" alt="Sekretaris Desa">
-      <p>Sekretaris Desa</p>
-    </div>
-    <div class="tokoh-card">
-      <img src="../image/Pak_RW_example.jpg" alt="Pengurus">
-      <p>Pengurus</p>
-    </div>
-  </div>
-</section>
-
-<footer class="footer-section">
-  <div class="footer-container">
-    <div class="footer-contact">
-      <h3>Kontak</h3>
-      <p><strong>Alamat :</strong> Dusun Relokasi Pelem, Kalurahan Girikerto, Kapanewon Turi, Kabupaten Sleman, DIY</p>
-    </div>
-    <div class="footer-social">
-      <h4>Follow us :</h4>
-      <div class="social-icons">
-        <a href="https://instagram.com/ipp_sebaya" target="_blank">
-          <img src="../image/ig.png" alt="Instagram">
-          @ipp_sebaya
-        </a>
-        <a href="https://facebook.com/Ipp Sebaya" target="_blank">
-          <img src="../image/fb.png" alt="Facebook">
-          Ipp Sebaya
-        </a>
-        <a href="https://tiktok.com/@ipp_sebaya" target="_blank">
-          <img src="../image/tt.png" alt="TikTok">
-          ipp_sebaya
-        </a>
-      </div>
-    </div>
-  </div>
-      <p class="copyright">© 2025 Desa Relokasi Pelem. All rights reserved.</p>
-
-</footer>
-</body>
-</html>
-
+    <footer class="footer-section">
+        <div class="footer-container">
+            <div class="footer-contact">
+                <h3>Kontak</h3>
+                <p><strong>Alamat :</strong> Dusun Relokasi Pelem, Kalurahan Girikerto, Kapanewon Turi, Kabupaten Sleman, DIY</p>
+            </div>
+            <div class="footer-social">
+                <h4>Follow us :</h4>
+                <div class="social-icons">
+                    <a href="https://instagram.com/ipp_sebaya" target="_blank"><img src="../image/ig.png" alt="Instagram">@ipp_sebaya</a>
+                    <a href="https://facebook.com/Ipp Sebaya" target="_blank"><img src="../image/fb.png" alt="Facebook">Ipp Sebaya</a>
+                    <a href="https://tiktok.com/@ipp_sebaya" target="_blank"><img src="../image/tt.png" alt="TikTok">ipp_sebaya</a>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">© 2025 Desa Relokasi Pelem. All rights reserved.</p>
+    </footer>
 
 <script>
-  // Scroll animation trigger
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('show');
-      }
-    });
-  });
+    // --- Script untuk Navigasi Mobile (Burger Menu) ---
+    const navSlide = () => {
+        const burger = document.querySelector('.burger');
+        const nav = document.querySelector('.nav-links');
+        const navLinks = document.querySelectorAll('.nav-links li');
+        if (burger) {
+            burger.addEventListener('click', () => {
+                nav.classList.toggle('nav-active');
+                navLinks.forEach((link, index) => {
+                    if (link.style.animation) {
+                        link.style.animation = '';
+                    } else {
+                        link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.5}s`;
+                    }
+                });
+                burger.classList.toggle('toggle');
+            });
+        }
+    }
+    navSlide();
 
-  const hiddenElements = document.querySelectorAll('.animate-on-scroll');
-  hiddenElements.forEach(el => observer.observe(el));
-
- fetch("https://backend-relokasi-pelem.vercel.app/whoami", {
-  credentials: 'include'
-})
-.then(res => {
-  if (!res.ok) throw new Error("Session invalid");
-  return res.json();
-})
-.then(data => {
-  if (!data || !data.id) {
-    alert("Sesi login Anda telah berakhir. Silakan login kembali.");
-    window.location.href = "../index.html";
-  } else {
-    console.log("Login sebagai:", data.username);
-  }
-})
-.catch(error => {
-  console.warn("Gagal cek login:", error.message);
-  alert("Sesi login Anda telah berakhir. Silakan login kembali.");
-  window.location.href = "../index.html";
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-  const logoutBtn = document.querySelector('.btn.logout');
-  if (logoutBtn) {
-    logoutBtn.addEventListener('click', async () => {
-      try {
-        const response = await fetch('https://backend-relokasi-pelem.vercel.app/logout', {
-          method: 'DELETE',
-          credentials: 'include'
+    // --- Script untuk Animasi Scroll ---
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+            }
         });
-        const data = await response.json();
-        alert(data.msg);
-        if (response.ok) window.location.href = "../index.html";
-      } catch (error) {
-        console.error("Logout error:", error);
-        alert("Terjadi kesalahan saat logout");
-      }
     });
-  }
-});
+    document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+    
+    // --- Script untuk Fungsionalitas Admin ---
+    document.addEventListener('DOMContentLoaded', () => {
+        // 1. Cek Sesi Login
+        fetch("https://backend-relokasi-pelem.vercel.app/whoami", {
+            credentials: 'include'
+        })
+        .then(res => {
+            if (!res.ok) throw new Error("Sesi tidak valid");
+            return res.json();
+        })
+        .then(data => {
+            if (!data || !data.id) {
+                alert("Sesi login Anda telah berakhir. Silakan login kembali.");
+                window.location.href = "../login.html";
+            } else {
+                console.log("Login sebagai:", data.username);
+            }
+        })
+        .catch(error => {
+            console.warn("Gagal cek login:", error.message);
+            alert("Sesi login Anda telah berakhir. Silakan login kembali.");
+            window.location.href = "../login.html";
+        });
 
+        // 2. Fungsi Tombol Logout
+        const logoutBtn = document.querySelector('.btn.logout');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', async () => {
+                try {
+                    const response = await fetch('https://backend-relokasi-pelem.vercel.app/logout', {
+                        method: 'DELETE',
+                        credentials: 'include'
+                    });
+                    const data = await response.json();
+                    alert(data.msg);
+                    if (response.ok) window.location.href = "../index.html";
+                } catch (error) {
+                    console.error("Logout error:", error);
+                    alert("Terjadi kesalahan saat logout");
+                }
+            });
+        }
+
+        // 3. Ambil dan Tampilkan Data Tokoh Masyarakat dari Backend
+        const loadTokohMasyarakat = async () => {
+            const container = document.querySelector(".tokoh-grid");
+            if (!container) return;
+
+            try {
+                const res = await fetch("https://backend-relokasi-pelem.vercel.app/tokoh");
+                const tokohList = await res.json();
+                if (!Array.isArray(tokohList)) throw new Error('Data tidak valid');
+
+                container.innerHTML = ""; // Kosongkan container
+
+                const data = [...tokohList]; // Buat salinan data
+
+                const createTokohCard = (tokoh) => {
+                    const card = document.createElement("div");
+                    card.className = "tokoh-card";
+                    const imagePath = tokoh.url ? tokoh.url : "../image/default.jpg"; // Menggunakan URL dari backend
+                    card.innerHTML = `
+                        <img src="${imagePath}" alt="${tokoh.nama_tokoh}" onerror="this.onerror=null;this.src='../image/default.jpg';">
+                        <p><strong>${tokoh.nama_tokoh}</strong><br>${tokoh.jabatan}</p>
+                    `;
+                    return card;
+                };
+
+                const createRow = () => {
+                    const row = document.createElement("div");
+                    row.className = "tokoh-row";
+                    return row;
+                };
+
+                const layoutRules = [1, 2, 4]; // Aturan layout piramida
+                
+                for (const rule of layoutRules) {
+                    if (data.length === 0) break;
+                    const row = createRow();
+                    const items = data.splice(0, rule);
+                    items.forEach(item => row.appendChild(createTokohCard(item)));
+                    container.appendChild(row);
+                }
+
+                while (data.length > 0) {
+                    const row = createRow();
+                    const items = data.splice(0, 4);
+                    items.forEach(item => row.appendChild(createTokohCard(item)));
+                    container.appendChild(row);
+                }
+
+            } catch (err) {
+                console.error("Gagal memuat tokoh:", err);
+                container.innerHTML = "<p>Terjadi kesalahan saat memuat data tokoh.</p>";
+            }
+        };
+        
+        loadTokohMasyarakat(); // Panggil fungsi untuk memuat data
+    });
 </script>
+
 </body>
 </html>
