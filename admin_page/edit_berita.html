@@ -80,6 +80,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             credentials: "include",
         });
         const data = await res.json();
+        console.log('Data dari backend:', data);
         if (!res.ok) throw new Error(data.msg || "Berita tidak ditemukan");
 
         isiBeritaInput.value = data.isi_berita ? data.isi_berita.replace(/\\n/g, '\n') : "";
