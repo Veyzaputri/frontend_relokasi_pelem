@@ -1345,6 +1345,9 @@ main {
   .kontak-kiri p:last-of-type {
         margin-bottom: 0;
     }
+  .kontak-kanan {
+        min-height: auto;
+    }
 
     /* Menyesuaikan tinggi peta */
     .kontak-kanan iframe {
