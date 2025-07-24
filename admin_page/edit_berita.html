@@ -1,157 +1,65 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Edit Berita - Relokasi Pelem</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="../style.css">
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f4;
-    }
-
-    .form-container {
-      max-width: 600px;
-      margin: 40px auto;
-      padding: 30px;
-      background-color: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    .form-container label,
-    .form-container .info-label {
-      display: block;
-      margin: 15px 0 8px;
-      font-weight: 600;
-      font-size: 16px;
-    }
-
-    textarea {
-      width: 100%;
-      padding: 12px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 14px;
-      resize: vertical;
-    }
-
-    .upload-area {
-      border: 2px dashed #ccc;
-      border-radius: 10px;
-      text-align: center;
-      padding: 20px;
-      cursor: pointer;
-      margin-bottom: 20px;
-      color: #666;
-      transition: background-color 0.3s;
-    }
-
-    .upload-area:hover {
-      background-color: #f0f0f0;
-    }
-
-    #previewImage {
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
-      margin: 10px 0;
-      display: block;
-    }
-
-    .submit-btn {
-      background-color: #4CAF50;
-      color: white;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-      margin-top: 20px;
-      width: 100%;
-    }
-
-    .submit-btn:hover {
-      background-color: #3e8e41;
-    }
-
-    .footer-section {
-      text-align: center;
-      padding: 20px;
-      font-size: 14px;
-      color: #888;
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Edit Berita - Relokasi Pelem</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-  <header class="navbar">
-    <div class="container">
-      <h1 class="logo">Relokasi Pelem</h1>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="dashboard_admin.html">Beranda</a></li>
-          <li><a href="berita_admin.html">Berita</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+    <header class="navbar">
+        <div class="container">
+            <h1 class="logo">Relokasi Pelem</h1>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="dashboard_admin.html">Beranda</a></li>
+                    <li><a href="berita_admin.html">Berita</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-  <!-- Form Edit Berita -->
-  <div class="form-container">
-    <form id="formEditBerita" enctype="multipart/form-data">
+    <main>
+        <section class="admin-form-page">
+            <div class="form-card">
+                <h1>Edit Berita</h1>
+                <form id="formEditBerita" enctype="multipart/form-data">
 
-      <p class="info-label">Gambar Saat Ini</p>
-      <img id="previewImage" src="" alt="Gambar Lama" />
+                    <div class="form-group">
+                        <label>Gambar Saat Ini</label>
+                        <div class="image-preview-container">
+                             <img id="previewImage" src="" alt="Gambar pratinjau akan muncul di sini" style="display: none;"/>
+                        </div>
+                    </div>
 
-      <p class="info-label">Upload Gambar Baru (Opsional)</p>
-      <div id="uploadArea" class="upload-area">
-        <i class="fa-solid fa-upload"></i>
-        <p id="uploadText">Klik untuk upload gambar baru</p>
-        <input type="file" id="fileInput" name="file" accept="image/*" style="display: none;" />
-      </div>
+                    <div class="form-group">
+                        <label for="fileInput">Ubah Gambar (Opsional)</label>
+                        <div id="uploadArea" class="upload-area">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                            <p id="uploadText">Seret file ke sini, atau klik untuk memilih gambar</p>
+                        </div>
+                        <input type="file" id="fileInput" name="file" accept="image/*" style="display: none;" />
+                    </div>
 
-      <label for="isi_berita">Isi Berita</label>
-      <textarea id="isi_berita" name="isi_berita" rows="6" placeholder="Tulis berita..."></textarea>
+                    <div class="form-group">
+                        <label for="isi_berita">Isi Berita</label>
+                        <textarea id="isi_berita" name="isi_berita" rows="12" placeholder="Tulis paragraf pertama sebagai judul, lalu tekan Enter untuk isi selanjutnya..."></textarea>
+                    </div>
 
-      <button type="submit" class="submit-btn">Simpan Perubahan</button>
-    </form>
-  </div>
+                    <button type="submit" class="btn-submit">Simpan Perubahan</button>
+                </form>
+            </div>
+        </section>
+    </main>
 
-  <footer class="footer-section">
-  <div class="footer-container">
-    <div class="footer-contact">
-      <h3>Kontak</h3>
-      <p><strong>Alamat :</strong> Dusun Relokasi Pelem, Kalurahan Girikerto, Kapanewon Turi, Kabupaten Sleman, DIY</p>
-    </div>
-    <div class="footer-social">
-      <h4>Follow us :</h4>
-      <div class="social-icons">
-        <a href="https://instagram.com/ipp_sebaya" target="_blank">
-          <img src="../image/ig.png" alt="Instagram">
-          @ipp_sebaya
-        </a>
-        <a href="https://facebook.com/Ipp Sebaya" target="_blank">
-          <img src="../image/fb.png" alt="Facebook">
-          Ipp Sebaya
-        </a>
-        <a href="https://tiktok.com/@ipp_sebaya" target="_blank">
-          <img src="../image/tt.png" alt="TikTok">
-          ipp_sebaya
-        </a>
-      </div>
-    </div>
-  </div>
-      <p class="copyright">© 2025 Desa Relokasi Pelem. All rights reserved.</p>
+    <footer class="footer-section">
+        <p class="copyright">© 2025 Desa Relokasi Pelem. All rights reserved.</p>
+    </footer>
 
-</footer>
-
-  <script>
-  document.addEventListener("DOMContentLoaded", async () => {
+<script>
+document.addEventListener("DOMContentLoaded", async () => {
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get("id");
     const form = document.getElementById("formEditBerita");
@@ -161,74 +69,74 @@
     const uploadText = document.getElementById("uploadText");
     const previewImage = document.getElementById("previewImage");
 
-    // Load berita lama
-    try {
-      const res = await fetch(`https://backend-relokasi-pelem.vercel.app/berita/${id}`, {
-        credentials: "include",
-      });
-      const data = await res.json();
-
-      if (!res.ok) {
-        alert(data.msg || "Berita tidak ditemukan");
+    if (!id) {
+        alert("ID berita tidak ditemukan!");
+        window.location.href = "berita_admin.html";
         return;
-      }
-
-      isiBeritaInput.value = data.isi_berita || "";
-      if (data.gambar) {
-        previewImage.src = `https://backend-relokasi-pelem.vercel.app/uploads/${data.gambar}`;
-      }
-    } catch (err) {
-      console.error("Gagal memuat berita:", err);
-      alert("Gagal memuat data");
     }
 
-    // Upload klik
-    uploadArea.addEventListener("click", () => {
-      fileInput.click();
-    });
-
-    fileInput.addEventListener("change", () => {
-      const fileName = fileInput.files.length > 0 ? fileInput.files[0].name : "Upload File Baru";
-      uploadText.textContent = fileName;
-
-      if (fileInput.files[0]) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          previewImage.src = e.target.result;
-        };
-        reader.readAsDataURL(fileInput.files[0]);
-      }
-    });
-
-    // Submit form
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const formData = new FormData();
-      formData.append("isi_berita", isiBeritaInput.value);
-      if (fileInput.files[0]) {
-        formData.append("file", fileInput.files[0]);
-      }
-
-      try {
+    try {
         const res = await fetch(`https://backend-relokasi-pelem.vercel.app/berita/${id}`, {
-          method: "PATCH",
-          body: formData,
-          credentials: "include",
+            credentials: "include",
         });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.msg || "Berita tidak ditemukan");
 
-        const result = await res.json();
-        if (res.ok) {
-          alert("Berita berhasil diperbarui!");
-          window.location.href = "berita_admin.html";
-        } else {
-          alert("Gagal update: " + result.msg);
+        isiBeritaInput.value = data.isi_berita ? data.isi_berita.replace(/\\n/g, '\n') : "";
+        if (data.url) {
+            previewImage.src = data.url;
+            previewImage.style.display = 'block';
         }
-      } catch (err) {
-        console.error("Gagal update:", err);
-        alert("Terjadi kesalahan saat mengirim data");
-      }
+    } catch (err) {
+        alert(`Gagal memuat data: ${err.message}`);
+    }
+
+    uploadArea.addEventListener("click", () => fileInput.click());
+    fileInput.addEventListener("change", () => {
+        const file = fileInput.files[0];
+        if (file) {
+            uploadText.textContent = file.name;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                previewImage.src = e.target.result;
+                previewImage.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        }
     });
-  });
+
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const submitButton = e.target.querySelector('.btn-submit');
+        submitButton.textContent = 'Menyimpan...';
+        submitButton.disabled = true;
+
+        const formData = new FormData();
+        formData.append("isi_berita", isiBeritaInput.value.replace(/\n/g, '\\n'));
+        if (fileInput.files[0]) {
+            formData.append("file", fileInput.files[0]);
+        }
+
+        try {
+            const res = await fetch(`https://backend-relokasi-pelem.vercel.app/berita/${id}`, {
+                method: "PATCH",
+                body: formData,
+                credentials: "include",
+            });
+            const result = await res.json();
+            if (res.ok) {
+                alert("Berita berhasil diperbarui!");
+                window.location.href = "berita_admin.html";
+            } else {
+                throw new Error(result.msg || "Gagal memperbarui berita");
+            }
+        } catch (err) {
+            alert(`Gagal update: ${err.message}`);
+            submitButton.textContent = 'Simpan Perubahan';
+            submitButton.disabled = false;
+        }
+    });
+});
 </script>
 </body>
 </html>
