@@ -1387,7 +1387,7 @@ main {
 }
 .admin-container {
     max-width: 1200px; /* Lebar maksimum container */
-    margin: 40px auto; /* Margin atas bawah dan tengah horizontal */
+    margin: 100px auto 40px auto; /* Margin atas bawah dan tengah horizontal */
     padding: 20px;
     background-color: #fff; /* Latar belakang putih untuk konten */
     border-radius: 12px;
