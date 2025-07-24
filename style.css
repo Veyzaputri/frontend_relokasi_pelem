@@ -933,7 +933,7 @@ main {
     vertical-align: middle;
 }
 .kontak-page-section {
-    padding: 30px 20px;
+    padding: 60px 20px;
     background-color: #f4f6f9; /* Latar belakang abu-abu lembut */
     margin-top: 65px; /* Memberi jarak dari navbar yang fixed */
 }
@@ -1323,6 +1323,15 @@ main {
     }
     .map-desc-wrapper {
         padding: 40px 20px;
+    }
+  .kontak-page-section {
+        padding-top: 30px;    /* Kurangi padding atas */
+        padding-bottom: 30px; /* Kurangi padding bawah */
+    }
+
+    /* Sesuaikan tinggi peta untuk mobile */
+    .peta iframe {
+        height: 300px; /* Kurangi tinggi peta agar tidak terlalu makan tempat */
     }
 }
 @media screen and (max-width: 768px) {
