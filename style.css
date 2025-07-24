@@ -1334,7 +1334,7 @@ main {
 
     /* Sesuaikan tinggi peta untuk mobile */
     .peta iframe {
-        height: 300px; /* Kurangi tinggi peta agar tidak terlalu makan tempat */
+        height: 350px; /* Kurangi tinggi peta agar tidak terlalu makan tempat */
     }
   /* Mengatur ulang container kontak agar rapi di mobile */
     .kontak-container {
