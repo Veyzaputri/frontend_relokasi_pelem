@@ -30,10 +30,10 @@
     <main>
         <div class="admin-container">
             <div class="admin-page-header">
-                <h1>Kelola Tokoh Masyarakat</h1>
-                <button class="btn-admin btn-primary" onclick="window.location.href='add_tokoh_masyarakat.html'">+ Tambah Tokoh</button>
+                <h1><i class="fas fa-users" style="margin-right: 10px;"></i> Kelola Tokoh Masyarakat</h1>
+                <a href="add_tokoh_masyarakat.html" class="btn-admin btn-primary"><i class="fas fa-plus" style="margin-right: 5px;"></i> Tambah Tokoh</a>
             </div>
-            
+
             <div class="admin-tokoh-grid" id="tokohContainer">
                 </div>
         </div>
@@ -44,101 +44,83 @@
     </footer>
 
 <script>
-    // --- Logika Utama Halaman ---
     document.addEventListener('DOMContentLoaded', () => {
-        // Cek sesi login sebelum melakukan apapun
+        // Cek sesi login
         fetch("https://backend-relokasi-pelem.vercel.app/whoami", { credentials: 'include' })
-            .then(res => {
-                if (!res.ok) throw new Error("Sesi tidak valid");
-                return res.json();
-            })
-            .then(data => {
-                if (data && data.id) {
-                    loadTokoh(); // Jika login valid, muat data tokoh
-                } else {
-                    throw new Error("Sesi tidak ditemukan.");
-                }
-            })
+            .then(res => res.ok ? res.json() : Promise.reject('Sesi tidak valid'))
+            .then(data => data.id ? loadTokoh() : Promise.reject('Sesi tidak ditemukan'))
             .catch(error => {
-                alert("Sesi login Anda telah berakhir. Silakan login kembali.");
+                alert(`Sesi login Anda telah berakhir atau tidak valid. Silakan login kembali.`);
                 window.location.href = "../login.html";
             });
 
-        // Event listener untuk tombol logout
+        // Logout functionality
         const logoutBtn = document.querySelector('.btn.logout');
         if (logoutBtn) {
             logoutBtn.addEventListener('click', async () => {
                 try {
-                    const response = await fetch('https://backend-relokasi-pelem.vercel.app/logout', { method: 'DELETE', credentials: 'include' });
-                    const data = await response.json();
+                    const res = await fetch('https://backend-relokasi-pelem.vercel.app/logout', { method: 'DELETE', credentials: 'include' });
+                    const data = await res.json();
                     alert(data.msg);
-                    if (response.ok) window.location.href = "../index.html";
-                } catch (error) {
+                    if (res.ok) window.location.href = "../index.html";
+                } catch (err) {
                     alert("Terjadi kesalahan saat logout.");
                 }
             });
         }
     });
 
-    // --- Fungsi-fungsi Pembantu ---
-
     async function loadTokoh() {
         const container = document.getElementById("tokohContainer");
         container.innerHTML = "<p>Memuat data tokoh...</p>";
-
         try {
             const res = await fetch("https://backend-relokasi-pelem.vercel.app/tokoh", { credentials: "include" });
             const tokohList = await res.json();
             if (!Array.isArray(tokohList)) throw new Error('Data tidak valid');
 
-            container.innerHTML = ""; // Kosongkan container
+            container.innerHTML = "";
 
             const data = [...tokohList];
+            const layoutRules = [1, 2, 4];
 
-            const createTokohCard = (tokoh) => {
-                const card = document.createElement("div");
-                card.className = "admin-tokoh-card";
-                const imagePath = tokoh.gambar || "../image/default.jpg";
-                card.innerHTML = `
-                    <img src="${imagePath}" alt="${tokoh.nama_tokoh}" onerror="this.onerror=null;this.src='../image/default.jpg';">
-                    <div class="admin-tokoh-card-info">
-                        <p>${tokoh.nama_tokoh}</p>
-                        <span>${tokoh.jabatan}</span>
-                    </div>
-                    <div class="admin-tokoh-card-actions">
-                        <a href="#" class="btn btn-edit-tokoh" onclick="event.preventDefault(); editTokoh(${tokoh.id_tokoh})">Edit</a>
-                        <a href="#" class="btn btn-delete-tokoh" onclick="event.preventDefault(); deleteTokoh(${tokoh.id_tokoh})">Hapus</a>
-                    </div>
-                `;
-                return card;
-            };
-
-            const createRow = () => {
-                const row = document.createElement("div");
-                row.className = "tokoh-row";
-                return row;
-            };
-
-            const layoutRules = [1, 2, 4]; // Aturan layout piramida
-            
             for (const rule of layoutRules) {
                 if (data.length === 0) break;
-                const row = createRow();
+                const row = document.createElement("div");
+                row.className = "tokoh-row";
                 const items = data.splice(0, rule);
                 items.forEach(item => row.appendChild(createTokohCard(item)));
                 container.appendChild(row);
             }
 
             while (data.length > 0) {
-                const row = createRow();
+                const row = document.createElement("div");
+                row.className = "tokoh-row";
                 const items = data.splice(0, 4);
                 items.forEach(item => row.appendChild(createTokohCard(item)));
                 container.appendChild(row);
             }
 
         } catch (err) {
-            container.innerHTML = "<p>Terjadi kesalahan saat memuat data tokoh.</p>";
+            container.innerHTML = `<p>Terjadi kesalahan saat memuat data tokoh: ${err}</p>`;
         }
+    }
+
+    function createTokohCard(tokoh) {
+        const card = document.createElement("div");
+        card.className = "admin-tokoh-card";
+        const imagePath = tokoh.gambar || "../image/default.jpg";
+        card.innerHTML = `
+            <img src="${imagePath}" alt="${tokoh.nama_tokoh}" onerror="this.onerror=null;this.src='../image/default.jpg';">
+            <div class="admin-tokoh-card-info">
+                <p>${tokoh.nama_tokoh}</p>
+                <span>${tokoh.jabatan}</span>
+            </div>
+            <div class="admin-tokoh-card-actions">
+                <a href="#" class="btn btn-edit-tokoh" onclick="event.preventDefault(); editTokoh(${tokoh.id_tokoh})"><i class="fas fa-edit"></i> Edit</a>
+                <a href="#" class="btn btn-delete-tokoh" onclick="event.preventDefault(); deleteTokoh(${tokoh.id_tokoh})"><i class="fas fa-trash"></i> Hapus</a>
+            </div>
+        `;
+        return card;
     }
 
     function editTokoh(id) {
@@ -148,13 +130,10 @@
     async function deleteTokoh(id) {
         if (!confirm("Yakin ingin menghapus tokoh ini?")) return;
         try {
-            const res = await fetch(`https://backend-relokasi-pelem.vercel.app/tokoh/${id}`, {
-                method: "DELETE",
-                credentials: "include"
-            });
+            const res = await fetch(`https://backend-relokasi-pelem.vercel.app/tokoh/${id}`, { method: "DELETE", credentials: "include" });
             const data = await res.json();
             alert(data.msg);
-            if (res.ok) loadTokoh(); // Muat ulang data setelah berhasil hapus
+            if (res.ok) loadTokoh();
         } catch (err) {
             alert("Gagal menghapus tokoh.");
         }
