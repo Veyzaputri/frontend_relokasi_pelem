@@ -1488,6 +1488,33 @@ main {
 .btn-delete-tokoh { background-color: ##dc3545; }
 .btn-delete-tokoh:hover { background-color: #c82333; }
 
+/* ================================================= */
+/* ==   PERCANTIK TAMPILAN INPUT TEXT DI FORM     == */
+/* ================================================= */
+
+.form-group input[type="text"] {
+    width: 100%;
+    padding: 15px; /* Membuat input lebih tebal */
+    border: 1px solid #dcdcdc; /* Warna border lebih lembut */
+    border-radius: 8px; /* Sudut lebih tumpul */
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Efek saat input di-klik/aktif */
+.form-group input[type="text"]:focus {
+    outline: none;
+    border-color: #3f5d45; /* Warna border berubah menjadi hijau tema */
+    box-shadow: 0 0 0 4px rgba(63, 93, 69, 0.1); /* Memberi efek glow */
+}
+
+/* Mengubah warna placeholder */
+.form-group input[type="text"]::placeholder {
+    color: #aaa;
+}
+
 
 
 /* Animations */
