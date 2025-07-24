@@ -1409,7 +1409,7 @@ main {
         transform: rotate(45deg) translate(-5px, -6px);
     }
 }
-@media (max-width: 900px) {
+/* @media (max-width: 900px) {
     .kontak-container {
         flex-direction: column; /* Konten ditumpuk ke bawah */
     }
@@ -1424,4 +1424,4 @@ main {
         height: 500px; /* Sesuaikan tinggi peta untuk mobile */
         min-height: 500px;
     }
-}
+} */
