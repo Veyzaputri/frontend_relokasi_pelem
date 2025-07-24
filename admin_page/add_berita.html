@@ -1,121 +1,122 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tambah Berita - Relokasi Pelem</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="../style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Tambah Berita - Relokasi Pelem</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
+    <header class="navbar">
+        <div class="container">
+            <h1 class="logo">Relokasi Pelem</h1>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="dashboard_admin.html">Beranda</a></li>
+                    <li><a href="berita_admin.html">Berita</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-<header class="navbar">
-    <div class="container">
-      <h1 class="logo">Relokasi Pelem</h1>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="dashboard_admin.html">Beranda</a></li>
-          <li><a href="berita_admin.html">Berita</a></li>
-          <li><a href="sosial_kemanusiaan.html">Sosial & Kemanusiaan</a></li>
-          <li><a href="tokoh_masyarakat.html">Tokoh Masyarakat</a></li>
-          <li><a href="#">Organisasi</a></li>
-          <li><a href="#">Kontak Kami</a></li>
-        </ul>
-      </nav>
-      <div class="auth-buttons">
-        <button class="btn logout" >Logout</button>
-      </div>
-    </div>
-  </header>
+    <main>
+        <section class="admin-form-page">
+            <div class="form-card">
+                <h1>Tambah Berita Baru</h1>
+                <form id="formTambahBerita" enctype="multipart/form-data">
 
-  <!-- Form Tambah Berita -->
-  <div class="form-container">
-    <form id="formBerita" action="#" method="post" enctype="multipart/form-data">
-      <div id="uploadArea" class="upload-area">
-        <i class="fa-solid fa-upload"></i>
-        <p id="uploadText">Upload File</p>
-        <input type="file" id="fileInput" name="file" accept="image/*" style="display: none;" />
-      </div>
+                    <div class="form-group">
+                        <label for="fileInput">Upload Gambar</label>
+                        <div id="uploadArea" class="upload-area">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                            <p id="uploadText">Seret file ke sini, atau klik untuk memilih gambar</p>
+                        </div>
+                        <input type="file" id="fileInput" name="file" accept="image/*" style="display: none;" required />
+                    </div>
+                    
+                    <div class="form-group" id="previewContainer" style="display: none;">
+                        <label>Pratinjau Gambar</label>
+                        <div class="image-preview-container">
+                             <img id="previewImage" src="#" alt="Gambar pratinjau"/>
+                        </div>
+                    </div>
 
-      <label for="berita"><strong>Tulis Berita</strong></label>
-      <textarea id="berita" name="isi_berita" rows="6" placeholder="Tulis berita di sini..."></textarea>
- 
-      <button type="submit" class="submit-btn">Simpan</button>
-    </form>
-  </div>
+                    <div class="form-group">
+                        <label for="isi_berita">Isi Berita</label>
+                        <textarea id="isi_berita" name="isi_berita" rows="12" placeholder="Tulis paragraf pertama sebagai judul, lalu tekan Enter untuk isi selanjutnya..." required></textarea>
+                    </div>
 
-  <!-- Footer -->
-  <footer class="footer-section">
-  <div class="footer-container">
-    <div class="footer-contact">
-      <h3>Kontak</h3>
-      <p><strong>Alamat :</strong> Dusun Relokasi Pelem, Kalurahan Girikerto, Kapanewon Turi, Kabupaten Sleman, DIY</p>
-    </div>
-    <div class="footer-social">
-      <h4>Follow us :</h4>
-      <div class="social-icons">
-        <a href="https://instagram.com/ipp_sebaya" target="_blank">
-          <img src="../image/ig.png" alt="Instagram">
-          @ipp_sebaya
-        </a>
-        <a href="https://facebook.com/Ipp Sebaya" target="_blank">
-          <img src="../image/fb.png" alt="Facebook">
-          Ipp Sebaya
-        </a>
-        <a href="https://tiktok.com/@ipp_sebaya" target="_blank">
-          <img src="../image/tt.png" alt="TikTok">
-          ipp_sebaya
-        </a>
-      </div>
-    </div>
-  </div>
-      <p class="copyright">© 2025 Desa Relokasi Pelem. All rights reserved.</p>
+                    <button type="submit" class="btn-submit">Simpan Berita</button>
+                </form>
+            </div>
+        </section>
+    </main>
 
-</footer>
+    <footer class="footer-section">
+        <p class="copyright">© 2025 Desa Relokasi Pelem. All rights reserved.</p>
+    </footer>
 
-
-  <script>
-  document.addEventListener("DOMContentLoaded", () => {
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("formTambahBerita");
+    const isiBeritaInput = document.getElementById("isi_berita");
     const uploadArea = document.getElementById("uploadArea");
     const fileInput = document.getElementById("fileInput");
     const uploadText = document.getElementById("uploadText");
+    const previewContainer = document.getElementById("previewContainer");
+    const previewImage = document.getElementById("previewImage");
 
-    // Klik area upload = buka file picker
-    uploadArea.addEventListener("click", () => {
-      fileInput.click();
-    });
-
-    // Ganti teks jadi nama file setelah dipilih
+    // Fungsi untuk menampilkan pratinjau gambar
+    uploadArea.addEventListener("click", () => fileInput.click());
     fileInput.addEventListener("change", () => {
-      const fileName = fileInput.files.length > 0 ? fileInput.files[0].name : "Upload File";
-      uploadText.textContent = fileName;
-    });
-
-    // Submit form
-    document.getElementById("formBerita").addEventListener("submit", async function(e) {
-      e.preventDefault();
-      const formData = new FormData(this);
-      try {
-        const res = await fetch("https://backend-relokasi-pelem.vercel.app/add-berita", {
-          method: "POST",
-          body: formData,
-          credentials: "include"
-        });
-
-        const data = await res.json();
-        if (res.ok) {
-          alert("Berita berhasil ditambahkan!");
-          window.location.href = "berita_admin.html";
-        } else {
-          alert("Gagal menambahkan berita: " + data.msg);
+        const file = fileInput.files[0];
+        if (file) {
+            uploadText.textContent = file.name;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                previewImage.src = e.target.result;
+                previewContainer.style.display = 'block'; // Tampilkan kontainer pratinjau
+            };
+            reader.readAsDataURL(file);
         }
-      } catch (err) {
-        console.error("Error:", err);
-        alert("Terjadi kesalahan");
-      }
     });
-  });
+
+    // Fungsi untuk submit form
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const submitButton = e.target.querySelector('.btn-submit');
+        submitButton.textContent = 'Menyimpan...';
+        submitButton.disabled = true;
+        
+        const formData = new FormData();
+        // Ganti baris baru (\n) dengan representasi stringnya (\\n) agar disimpan dengan benar
+        formData.append("isi_berita", isiBeritaInput.value.replace(/\n/g, '\\n'));
+        if (fileInput.files[0]) {
+            formData.append("file", fileInput.files[0]);
+        }
+
+        try {
+            const res = await fetch("https://backend-relokasi-pelem.vercel.app/add-berita", {
+                method: "POST",
+                body: formData,
+                credentials: "include"
+            });
+            const result = await res.json();
+            if (res.ok) {
+                alert("Berita baru berhasil ditambahkan!");
+                window.location.href = "berita_admin.html";
+            } else {
+                throw new Error(result.msg || "Gagal menambahkan berita");
+            }
+        } catch (err) {
+            alert(`Gagal: ${err.message}`);
+            submitButton.textContent = 'Simpan Berita';
+            submitButton.disabled = false;
+        }
+    });
+});
 </script>
 </body>
 </html>
