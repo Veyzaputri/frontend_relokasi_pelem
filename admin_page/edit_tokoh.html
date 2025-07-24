@@ -1,259 +1,151 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Edit Tokoh - Relokasi Pelem</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="../style.css">
-  <style>
-   
-
-    .form-container {
-      max-width: 600px;
-      margin: 40px auto;
-      padding: 30px;
-      background-color: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    .form-container label,
-    .form-container .info-label {
-      display: block;
-      margin: 15px 0 8px;
-      font-weight: 600;
-      font-size: 16px;
-    }
-
-    input[type="text"], textarea {
-      width: 100%;
-      padding: 12px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 14px;
-    }
-
-    .upload-area {
-      border: 2px dashed #ccc;
-      border-radius: 10px;
-      text-align: center;
-      padding: 20px;
-      cursor: pointer;
-      margin-bottom: 20px;
-      color: #666;
-      transition: background-color 0.3s;
-    }
-
-    .upload-area:hover {
-      background-color: #f0f0f0;
-    }
-
-    #previewImage {
-      max-width: 200px;
-      height: auto;
-      border-radius: 10px;
-      margin: 10px auto;
-      display: block;
-    }
-
-    .submit-btn {
-      background-color: #4CAF50;
-      color: white;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-      margin-top: 20px;
-      width: 100%;
-    }
-
-    .submit-btn:hover {
-      background-color: #3e8e41;
-    }
-
-    .footer-section {
-      text-align: center;
-      padding: 20px;
-      font-size: 14px;
-      color: #888;
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Edit Tokoh - Relokasi Pelem</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-  <header class="navbar">
-    <div class="container">
-      <h1 class="logo">Relokasi Pelem</h1>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="dashboard_admin.html">Beranda</a></li>
-          <li><a href="tokoh_masyarakat.html">Tokoh Masyarakat</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+    <header class="navbar">
+        <div class="container">
+            <h1 class="logo">Relokasi Pelem</h1>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="dashboard_admin.html">Beranda</a></li>
+                    <li><a href="tokoh_masyarakat.html">Tokoh Masyarakat</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-  <!-- Form Edit Tokoh -->
-  <div class="form-container">
-    <form id="formEditTokoh" enctype="multipart/form-data">
+    <main>
+        <section class="admin-form-page">
+            <div class="form-card">
+                <h1>Edit Tokoh Masyarakat</h1>
+                <form id="formEditTokoh" enctype="multipart/form-data">
 
-      <p class="info-label">Foto Saat Ini</p>
-      <img id="previewImage" src="" alt="Foto Tokoh" />
+                    <div class="form-group">
+                        <label>Foto Saat Ini</label>
+                        <div class="image-preview-container">
+                             <img id="previewImage" src="" alt="Pratinjau foto akan muncul di sini" style="display: none;"/>
+                        </div>
+                    </div>
 
-      <p class="info-label">Ganti Foto (Opsional)</p>
-      <div id="uploadArea" class="upload-area">
-        <i class="fa-solid fa-upload"></i>
-        <p id="uploadText">Klik untuk upload foto baru</p>
-        <input type="file" id="fileInput" name="file" accept="image/*" style="display: none;" />
-      </div>
+                    <div class="form-group">
+                        <label for="fileInput">Ubah Foto (Opsional)</label>
+                        <div id="uploadArea" class="upload-area">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                            <p id="uploadText">Seret file ke sini, atau klik untuk memilih foto</p>
+                        </div>
+                        <input type="file" id="fileInput" name="file" accept="image/*" style="display: none;" />
+                    </div>
 
-      <label for="nama_tokoh">Nama Tokoh</label>
-      <input type="text" id="nama_tokoh" name="nama_tokoh" required>
+                    <div class="form-group">
+                        <label for="nama_tokoh">Nama Tokoh</label>
+                        <input type="text" id="nama_tokoh" name="nama_tokoh" required>
+                    </div>
 
-      <label for="jabatan">Jabatan</label>
-      <input type="text" id="jabatan" name="jabatan" required>
+                    <div class="form-group">
+                        <label for="jabatan">Jabatan</label>
+                        <input type="text" id="jabatan" name="jabatan" required>
+                    </div>
 
-      <button type="submit" class="submit-btn">Simpan Perubahan</button>
-    </form>
-  </div>
+                    <button type="submit" class="btn-submit">Simpan Perubahan</button>
+                </form>
+            </div>
+        </section>
+    </main>
 
-  <footer class="footer-section">
-  <div class="footer-container">
-    <div class="footer-contact">
-      <h3>Kontak</h3>
-      <p><strong>Alamat :</strong> Dusun Relokasi Pelem, Kalurahan Girikerto, Kapanewon Turi, Kabupaten Sleman, DIY</p>
-    </div>
-    <div class="footer-social">
-      <h4>Follow us :</h4>
-      <div class="social-icons">
-        <a href="https://instagram.com/ipp_sebaya" target="_blank">
-          <img src="../image/ig.png" alt="Instagram">
-          @ipp_sebaya
-        </a>
-        <a href="https://facebook.com/Ipp Sebaya" target="_blank">
-          <img src="../image/fb.png" alt="Facebook">
-          Ipp Sebaya
-        </a>
-        <a href="https://tiktok.com/@ipp_sebaya" target="_blank">
-          <img src="../image/tt.png" alt="TikTok">
-          ipp_sebaya
-        </a>
-      </div>
-    </div>
-  </div>
-      <p class="copyright">© 2025 Desa Relokasi Pelem. All rights reserved.</p>
+    <footer class="footer-section">
+        <p class="copyright">© 2025 Desa Relokasi Pelem. All rights reserved.</p>
+    </footer>
 
-</footer>
+<script>
+document.addEventListener("DOMContentLoaded", async () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get("id");
+    const form = document.getElementById("formEditTokoh");
+    const namaInput = document.getElementById("nama_tokoh");
+    const jabatanInput = document.getElementById("jabatan");
+    const fileInput = document.getElementById("fileInput");
+    const uploadArea = document.getElementById("uploadArea");
+    const uploadText = document.getElementById("uploadText");
+    const previewImage = document.getElementById("previewImage");
 
-  <script>
-    document.addEventListener("DOMContentLoaded", async () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const id = urlParams.get("id");
-      const form = document.getElementById("formEditTokoh");
-      const namaInput = document.getElementById("nama_tokoh");
-      const jabatanInput = document.getElementById("jabatan");
-      const fileInput = document.getElementById("fileInput");
-      const uploadArea = document.getElementById("uploadArea");
-      const uploadText = document.getElementById("uploadText");
-      const previewImage = document.getElementById("previewImage");
-
-      if (!id) {
+    if (!id) {
         alert("ID tokoh tidak ditemukan.");
         return window.location.href = "tokoh_masyarakat.html";
-      }
+    }
 
-      // Fetch data tokoh
-      try {
+    // Memuat data tokoh yang akan diedit
+    try {
         const res = await fetch(`https://backend-relokasi-pelem.vercel.app/tokoh/${id}`, {
-          credentials: "include",
+            credentials: "include",
         });
         const data = await res.json();
-
         if (!res.ok) throw new Error(data.msg || "Data tidak ditemukan");
 
         namaInput.value = data.nama_tokoh;
         jabatanInput.value = data.jabatan;
         if (data.gambar) {
-          previewImage.src = data.gambar;
-
+            // Menambahkan timestamp untuk mencegah masalah cache
+            previewImage.src = `${data.gambar}?t=${new Date().getTime()}`;
+            previewImage.style.display = 'block';
         }
-      } catch (err) {
+    } catch (err) {
         alert("Gagal memuat data tokoh: " + err.message);
-        return;
-      }
+    }
 
-      // Upload klik
-      uploadArea.addEventListener("click", () => {
-        fileInput.click();
-      });
-
-      fileInput.addEventListener("change", () => {
-        const fileName = fileInput.files.length > 0 ? fileInput.files[0].name : "Upload Foto Baru";
-        uploadText.textContent = fileName;
-
-        if (fileInput.files[0]) {
-          const reader = new FileReader();
-          reader.onload = (e) => {
-            previewImage.src = e.target.result;
-          };
-          reader.readAsDataURL(fileInput.files[0]);
+    // Fungsionalitas upload dan pratinjau gambar
+    uploadArea.addEventListener("click", () => fileInput.click());
+    fileInput.addEventListener("change", () => {
+        const file = fileInput.files[0];
+        if (file) {
+            uploadText.textContent = file.name;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                previewImage.src = e.target.result;
+                previewImage.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
         }
-      });
+    });
 
-      // Submit
+    // Fungsionalitas submit form
     form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+        e.preventDefault();
+        const submitButton = e.target.querySelector('.btn-submit');
+        submitButton.textContent = 'Menyimpan...';
+        submitButton.disabled = true;
 
-    const fileToUpload = fileInput.files[0];
-    const url = `https://backend-relokasi-pelem.vercel.app/tokoh/${id}`;
-    let fetchOptions;
-
-    if (fileToUpload) {
-        // Kirim sebagai FormData jika ada file
         const formData = new FormData();
         formData.append("nama_tokoh", namaInput.value);
         formData.append("jabatan", jabatanInput.value);
-        formData.append("file", fileToUpload);
-
-        fetchOptions = {
-            method: "PUT",
-            body: formData,
-            credentials: "include",
-        };
-    } else {
-        // Kirim sebagai JSON jika tidak ada file
-        const body = {
-            nama_tokoh: namaInput.value,
-            jabatan: jabatanInput.value,
-        };
-
-        fetchOptions = {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(body),
-            credentials: "include",
-        };
-    }
-
-    try {
-        const res = await fetch(url, fetchOptions);
-        const result = await res.json(); // Selalu coba baca JSON untuk info error
-
-        if (!res.ok) {
-            throw new Error(result.msg || `HTTP error! status: ${res.status}`);
+        if (fileInput.files[0]) {
+            formData.append("file", fileInput.files[0]);
         }
-        
-        alert("Tokoh berhasil diperbarui!");
-        window.location.href = "tokoh_masyarakat.html";
-    } catch (err) {
-        console.error("Gagal update:", err);
-        alert("Gagal update: " + err.message);
-    }
-});
-      });
 
-  </script>
+        try {
+            const res = await fetch(`https://backend-relokasi-pelem.vercel.app/tokoh/${id}`, {
+                method: "PATCH", // Menggunakan PATCH untuk update
+                body: formData,
+                credentials: "include",
+            });
+            const result = await res.json();
+            if (!res.ok) throw new Error(result.msg || "Gagal memperbarui data");
+            
+            alert("Tokoh berhasil diperbarui!");
+            window.location.href = "tokoh_masyarakat.html";
+        } catch (err) {
+            alert("Gagal update: " + err.message);
+            submitButton.textContent = 'Simpan Perubahan';
+            submitButton.disabled = false;
+        }
+    });
+});
+</script>
 </body>
 </html>
