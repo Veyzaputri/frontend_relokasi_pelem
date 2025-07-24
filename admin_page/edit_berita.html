@@ -26,14 +26,12 @@
             <div class="form-card">
                 <h1>Edit Berita</h1>
                 <form id="formEditBerita" enctype="multipart/form-data">
-
                     <div class="form-group">
                         <label>Gambar Saat Ini</label>
                         <div class="image-preview-container">
                              <img id="previewImage" src="" alt="Gambar pratinjau akan muncul di sini" style="display: none;"/>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label for="fileInput">Ubah Gambar (Opsional)</label>
                         <div id="uploadArea" class="upload-area">
@@ -42,12 +40,10 @@
                         </div>
                         <input type="file" id="fileInput" name="file" accept="image/*" style="display: none;" />
                     </div>
-
                     <div class="form-group">
                         <label for="isi_berita">Isi Berita</label>
                         <textarea id="isi_berita" name="isi_berita" rows="12" placeholder="Tulis paragraf pertama sebagai judul, lalu tekan Enter untuk isi selanjutnya..."></textarea>
                     </div>
-
                     <button type="submit" class="btn-submit">Simpan Perubahan</button>
                 </form>
             </div>
@@ -80,19 +76,24 @@ document.addEventListener("DOMContentLoaded", async () => {
             credentials: "include",
         });
         const data = await res.json();
-        console.log('Data dari backend:', data);
         if (!res.ok) throw new Error(data.msg || "Berita tidak ditemukan");
 
         isiBeritaInput.value = data.isi_berita ? data.isi_berita.replace(/\\n/g, '\n') : "";
-        if (data.gambar) {
-            const imageUrl = `https://backend-relokasi-pelem.vercel.app/uploads/${data.gambar}`;
-            previewImage.src = `${imageUrl}?t=${new Date().getTime()}`;
+        
+        // =================================================================
+        // ==     PERBAIKAN FINAL BERDASARKAN DATA KONSOL ANDA            ==
+        // =================================================================
+        if (data.gambar) { 
+            // Langsung gunakan URL lengkap dari data.gambar
+            previewImage.src = `${data.gambar}?t=${new Date().getTime()}`;
             previewImage.style.display = 'block';
         }
+
     } catch (err) {
         alert(`Gagal memuat data: ${err.message}`);
     }
 
+    // Kode lainnya sudah benar
     uploadArea.addEventListener("click", () => fileInput.click());
     fileInput.addEventListener("change", () => {
         const file = fileInput.files[0];
