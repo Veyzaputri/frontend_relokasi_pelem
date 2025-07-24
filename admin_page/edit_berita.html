@@ -83,8 +83,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (!res.ok) throw new Error(data.msg || "Berita tidak ditemukan");
 
         isiBeritaInput.value = data.isi_berita ? data.isi_berita.replace(/\\n/g, '\n') : "";
-        if (data.url) {
-            previewImage.src = `${data.url}?t=${new Date().getTime()}`;
+        if (data.gambar) {
+            const imageUrl = `https://backend-relokasi-pelem.vercel.app/uploads/${data.gambar}?t=${new Date().getTime()}`;
+            previewImage.src = imageUrl;
             previewImage.style.display = 'block';
         }
     } catch (err) {
