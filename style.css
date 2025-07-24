@@ -1306,6 +1306,9 @@ main {
 
 /* Media Queries untuk Tampilan HP */
 @media (max-width: 768px) {
+  main {
+        flex: none; /* atau flex-grow: 0; */
+    }
     .hero-title {
         font-size: 38px;
     }
@@ -1332,6 +1335,17 @@ main {
     /* Sesuaikan tinggi peta untuk mobile */
     .peta iframe {
         height: 300px; /* Kurangi tinggi peta agar tidak terlalu makan tempat */
+    }
+  /* Mengatur ulang container kontak agar rapi di mobile */
+    .kontak-container {
+        flex-direction: column;
+        margin-top: 0;
+        padding: 15px;
+    }
+
+    /* Menyesuaikan tinggi peta */
+    .kontak-kanan iframe {
+        height: 300px;
     }
 }
 @media screen and (max-width: 768px) {
