@@ -1365,53 +1365,66 @@ main {
 /* ==   GAYA UNTUK HALAMAN KELOLA TOKOH ADMIN   == */
 /* =============================================== */
 
+
+
 /* Header Halaman (Judul dan Tombol Tambah) */
 .admin-page-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #eee;
 }
 
 .admin-page-header h1 {
-    font-size: 28px;
-    color: #2c3e50;
+    font-size: 32px; /* Ukuran font judul lebih besar */
+    color: #333;
+    margin-bottom: 0;
+}
+.admin-page-body {
+    background-color: #f9f9f9; /* Latar belakang lebih lembut */
+}
+.admin-container {
+    max-width: 1200px; /* Lebar maksimum container */
+    margin: 40px auto; /* Margin atas bawah dan tengah horizontal */
+    padding: 20px;
+    background-color: #fff; /* Latar belakang putih untuk konten */
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07); /* Efek bayangan halus */
 }
 
 /* Penataan ulang grid tokoh di halaman admin */
-.admin-tokoh-grid {
+.admin-tokoh-grid .tokoh-row {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-    margin-top: 20px;
+    justify-content: center; /* Tengah horizontal untuk setiap baris */
+    gap: 20px;
+    margin-bottom: 30px; /* Spasi antar baris */
+    width: 100%; /* Lebar penuh untuk baris */
 }
 
 /* Kartu Tokoh di Halaman Admin */
+
 .admin-tokoh-card {
-    width: 200px; /* Sedikit lebih besar untuk tombol */
-    background: #ffffff;
-    border-radius: 15px;
+    width: 220px; /* Lebar kartu diperkecil */
+    background: #fff;
+    border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.09);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
 .admin-tokoh-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+    transform: scale(1.03);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
 
 .admin-tokoh-card img {
     width: 100%;
-    height: 240px;
+    height: 200px;
     object-fit: cover;
-    background-color: #f0f0f0;
+    background-color: #ddd;
 }
 
 .admin-tokoh-card-info {
@@ -1421,39 +1434,59 @@ main {
 
 .admin-tokoh-card-info p {
     font-weight: 600;
-    font-size: 15px;
-    margin: 0;
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #333;
 }
 .admin-tokoh-card-info span {
     font-weight: 400;
     font-size: 14px;
     color: #666;
 }
+/* Gaya untuk tombol tambah */
+.btn-admin {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+    text-decoration: none !important;
+    color: white !important;
+}
+
+.btn-primary {
+    background-color: #5cb85c; /* Warna hijau yang umum untuk tombol positif */
+}
+
+.btn-primary:hover {
+    background-color: #4cae4c;
+}
 
 /* Tombol di dalam Kartu */
 .admin-tokoh-card-actions {
     display: flex;
-    border-top: 1px solid #f0f0f0;
+    border-top: 1px solid #eee;
 }
 
 .admin-tokoh-card-actions .btn {
-    flex: 1; /* Lebar tombol sama rata */
-    padding: 12px 5px;
+    flex: 1;
+    padding: 10px 0;
     font-size: 14px;
     border-radius: 0;
     margin: 0;
     border: none;
-    color: white !important;
-    text-decoration: none;
     cursor: pointer;
+    text-decoration: none !important;
+    color: white !important;
     transition: background-color 0.2s ease;
 }
 
-.btn-edit-tokoh { background-color: #3498db; }
-.btn-edit-tokoh:hover { background-color: #2980b9; }
+.btn-edit-tokoh { background-color: #007bff; }
+.btn-edit-tokoh:hover { background-color: #0056b3; }
 
-.btn-delete-tokoh { background-color: #e74c3c; }
-.btn-delete-tokoh:hover { background-color: #c0392b; }
+.btn-delete-tokoh { background-color: ##dc3545; }
+.btn-delete-tokoh:hover { background-color: #c82333; }
 
 
 
