@@ -84,8 +84,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         isiBeritaInput.value = data.isi_berita ? data.isi_berita.replace(/\\n/g, '\n') : "";
         if (data.gambar) {
-            const imageUrl = `https://backend-relokasi-pelem.vercel.app/uploads/${data.gambar}?t=${new Date().getTime()}`;
-            previewImage.src = imageUrl;
+            const imageUrl = `https://backend-relokasi-pelem.vercel.app/uploads/${data.gambar}`;
+            previewImage.src = `${imageUrl}?t=${new Date().getTime()}`;
             previewImage.style.display = 'block';
         }
     } catch (err) {
