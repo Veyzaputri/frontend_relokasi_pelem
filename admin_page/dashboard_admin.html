@@ -193,7 +193,7 @@
                 const createTokohCard = (tokoh) => {
                     const card = document.createElement("div");
                     card.className = "tokoh-card";
-                    const imagePath = tokoh.url ? tokoh.url : "../image/default.jpg"; // Menggunakan URL dari backend
+                    const imagePath = tokoh.gambar ? tokoh.gambar : "../image/default.jpg"; // Menggunakan URL dari backend
                     card.innerHTML = `
                         <img src="${imagePath}" alt="${tokoh.nama_tokoh}" onerror="this.onerror=null;this.src='../image/default.jpg';">
                         <p><strong>${tokoh.nama_tokoh}</strong><br>${tokoh.jabatan}</p>
