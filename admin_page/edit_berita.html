@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         isiBeritaInput.value = data.isi_berita ? data.isi_berita.replace(/\\n/g, '\n') : "";
         if (data.url) {
-            previewImage.src = data.url;
+            previewImage.src = `${data.url}?t=${new Date().getTime()}`;
             previewImage.style.display = 'block';
         }
     } catch (err) {
