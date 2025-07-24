@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="../style.css" />
     <title>Berita Admin - Relokasi Pelem</title>
@@ -88,17 +88,6 @@
 
         beritaContainer.innerHTML = "<p style='text-align:center;'>Memuat berita...</p>";
 
-        // Fungsi untuk format teks (jika semua huruf besar)
-        function formatSentenceCase(str) {
-            if (!str) return '';
-            const letters = str.match(/[a-zA-Z]/g) || [];
-            const upper = str.match(/[A-Z]/g) || [];
-            const isAllCaps = (upper.length / letters.length) > 0.8 && letters.length > 20;
-            if (!isAllCaps) return str;
-            const lower = str.toLowerCase();
-            return lower.charAt(0).toUpperCase() + lower.slice(1);
-        }
-
         try {
             const res = await fetch("https://backend-relokasi-pelem.vercel.app/berita", { credentials: "include" });
             const beritaList = await res.json();
@@ -113,11 +102,15 @@
             beritaList.forEach((berita) => {
                 const card = document.createElement("div");
                 card.className = "berita-card";
-
                 const imagePath = berita.gambar ? berita.gambar : "../image/default_news.jpg";
-                
-                const isiLengkap = formatSentenceCase(berita.isi_berita || '');
-                const paragraf = isiLengkap.split('\\n').filter(p => p.trim() !== '');
+
+                // =========================================================================
+                // PERUBAHAN UTAMA: Logika pemisahan judul dan konten
+                // =========================================================================
+                const isiLengkap = berita.isi_berita || '';
+                // Pisahkan konten berdasarkan baris baru ('\n')
+                const paragraf = isiLengkap.split(/\n|\\n/).filter(p => p.trim() !== '');
+
                 const judul = paragraf.length > 0 ? paragraf.shift() : 'Judul tidak tersedia';
                 const sisaKonten = paragraf.join('<br><br>');
 
@@ -138,7 +131,7 @@
                 beritaContainer.appendChild(card);
             });
             
-            // Menambahkan event listener untuk tombol "Baca Selengkapnya"
+            // Event listener untuk semua tombol "Baca Selengkapnya"
             beritaContainer.addEventListener('click', function(e) {
                 if (e.target.classList.contains('btn-berita')) {
                     e.preventDefault();
