@@ -140,8 +140,8 @@
                     // =========================================================================
                     // PERUBAHAN UTAMA: Memisahkan judul dan sisa konten
                     // =========================================================================
-                    const isiLengkap = formatSentenceCase(berita.isi_berita || '');
-                    const paragraf = isiLengkap.split('\n').filter(p => p.trim() !== ''); // Pisahkan per paragraf
+                    const isiLengkap = berita.isi_berita || '';
+                    const paragraf = isiLengkap.split(/\n|\\n/).filter(p => p.trim() !== ''); // Pisahkan per paragraf
 
                     const judul = paragraf.length > 0 ? paragraf.shift() : 'Judul tidak tersedia'; // Ambil paragraf pertama
                     const sisaKonten = paragraf.join('<br><br>'); // Gabungkan sisanya
