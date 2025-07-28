@@ -254,6 +254,28 @@ main {
 }
 
 
+/* --- Style untuk Peta Gambar --- */
+
+.peta-section {
+    padding: 60px 20px;
+    text-align: center;
+    background-color: #f9f9f9; /* Ganti warna jika perlu */
+}
+
+.peta-wrapper {
+    max-width: 900px; /* Atur lebar maksimal gambar peta */
+    margin: 0 auto; /* Posisi di tengah */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    overflow: hidden; /* Memastikan gambar mengikuti border radius */
+}
+
+.peta-wrapper img {
+    width: 100%; /* Membuat gambar responsif */
+    height: auto; /* Menjaga rasio aspek gambar */
+    display: block; /* Menghilangkan spasi bawah yang tidak perlu */
+}
+
 
 .tokoh-section {
   background-color: transparent;
